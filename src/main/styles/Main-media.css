@@ -1,0 +1,22 @@
+
+@media (max-width:1600px) {
+  .main-visual{
+    max-width: 95%;
+  }
+}
+
+
+@media (max-width:900px){
+  .main-visual figure p{
+    border-radius: 15px;
+  }
+  .main-visual figure figcaption{
+    font-size: 1em;
+  }
+}
+
+@media (max-width:600px) {
+  .main-visual figure figcaption{
+    font-size: .7em;
+  }
+}

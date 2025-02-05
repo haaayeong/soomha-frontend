@@ -1,0 +1,39 @@
+@media (max-width:1600px) {
+  header{
+    max-width: 95%;
+  }
+}
+
+@media (max-width:900px) {
+  #all-search{
+    max-width: auto;
+    width: 100vw;
+  }
+  .window-nav,.login-btn{
+    display: none;
+  }
+  .mobile-nav{
+    display: block;
+  } 
+}
+@media (max-width:600px) {
+  #all-search{
+    width: 250px;
+    font-size: .8em;
+  }
+  .nav-left h1{
+    font-size: 1.2em;
+  }
+}
+@media (max-width:450px) {
+  header{
+    padding: 15px;
+    border-bottom: 2px solid #ccc;
+  }
+  #all-search{
+    width: auto;
+  }
+  .hambuger li{
+    width: 23px;
+  }
+}

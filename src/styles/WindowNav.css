@@ -1,0 +1,13 @@
+.window-nav{
+  display: flex;
+  align-items: center;
+}
+
+.window-nav ul{
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.window-nav ul li{
+  font-family: 'Pretendard-Regular';
+}
