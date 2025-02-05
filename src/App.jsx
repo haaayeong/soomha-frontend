@@ -1,22 +1,17 @@
 import { useEffect, useState } from "react";
+import Login from "./user/pages/Login";
+import { Route, Routes } from "react-router-dom";
+import Signup from "./user/pages/Signup";
 
 function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/test")
-      .then((response) => response.json())
-      .then((data) => setMessage(data.message))
-      .catch((error) => console.error(err));
-  }, []);
 
   return (
-    <>
-      <div>
-        <h1>React + Flask 연결</h1>
-        <p>{message}</p>
-      </div>
-    </>
+    <main>
+      <Routes>
+        <Route path='/login' element={<Login />}/>
+        <Route path='/signup' element={<Signup />}/>
+      </Routes>
+    </main>
   )
 }
 
