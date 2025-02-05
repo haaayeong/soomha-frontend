@@ -1,8 +1,76 @@
+import { useState } from "react";
+import EmailInput from "../components/EmailInput";
+
 function Signup() {
+  const [email, setEmail] = useState("");
 
   return(
     <div className="Signup">
-      <h1>회원가입 페이지</h1>
+      <div className="title-wrap">
+        회원가입
+      </div>
+
+      <div className="content-wrap">
+        <div id="id">
+          <p>아이디</p>
+          <input
+          type="text" 
+          name="username"
+          placeholder="아이디 입력(소문자, 숫자 포함 6~20자)"
+          />
+          <button>중복 확인</button>
+        </div>
+
+        <div id="password">
+          <p>비밀번호</p>
+          <input
+          type="password"
+          name="password"
+          placeholder="비밀번호 입력(소문자, 숫자, 특수문자 포함 6~20자)"
+          />
+        </div>
+
+        <div id="confirm-password">
+          <p>비밀번호 확인</p>
+          <input
+          type="password" 
+          name="confirmPassword" 
+          placeholder="비밀번호 재입력"
+          />
+        </div>
+
+        <div id="nickname">
+          <p>닉네임</p>
+          <input
+          type="text"
+          name="nickname"
+          placeholder="닉네임 입력" 
+          />
+        </div>
+
+        <EmailInput setEmail={setEmail}/>
+
+        <div id="role">
+          <p>가입 유형</p>
+          <select>
+            <option value="children">어린이</option>
+            <option value="parent">학부모</option>
+            <option value="teacher">선생님</option>
+          </select>
+        </div>
+
+        <div id="kindergarten">
+          <p>소속 유치원</p>
+        </div>
+
+        <div id="area">
+          <p>사는 지역</p>
+          <p>* 서울특별시에 거주 -{">"} ex) 서울시 강동구 <br />
+              다른 지역에 거주 -{">"} ex) 경기도 수원시, 충청북도 괴산군
+          </p>
+        </div>
+
+      </div>
     </div>
   )
 
