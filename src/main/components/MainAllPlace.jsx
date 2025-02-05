@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
-import PlaceCard from "./PlaceCard";
 import { handleHorizontalScroll } from "../../utils/wheelUtil";
-import '../styles/MainGoodPlace.css'
+import '../styles/MainAllPlace.css'
+import PlaceCard from "./PlaceCard";
 
-function MainGoodPlace(){
+function MainAllPlace(){
+  const bool = true;
   const mainPlaceCardsRef = useRef(null);
 
   useEffect(() => {
@@ -22,18 +23,18 @@ function MainGoodPlace(){
 
 
   return(
-    <section className="main-good-place">
+    <section className="main-all-place">
       <div className="main-place-top">
-        <h2>오늘의 추천 장소</h2>
+        <h2>자녀와 함께놀기</h2>
         <p></p>
       </div>
       <article className="main-place-cards" ref={mainPlaceCardsRef}>
         {[...Array(5)].map((_, index) => (
-            <PlaceCard key={index} />
+            <PlaceCard key={index} bool={bool} />
           ))}
       </article>
     </section>
   )
 }
 
-export default MainGoodPlace;
+export default MainAllPlace;

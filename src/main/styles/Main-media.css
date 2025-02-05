@@ -3,6 +3,9 @@
   .main-visual{
     max-width: 95%;
   }
+  .main-good-place,.main-all-place{
+    max-width: 85%;
+  }
 }
 
 
@@ -13,6 +16,23 @@
   .main-visual figure figcaption{
     font-size: 1em;
   }
+  .place-card{
+    width: 280px;
+  }
+  .main-place-top h2{
+    font-size: 1.2em;
+    letter-spacing: 0;
+  }
+  .main-weather-box .weather-box{
+    font-size: 0.8em;
+  }
+  .main-weather-box .temp-box{
+    font-size: 0.8em;
+  }
+  .main-comment-box span,.main-like-box span{
+    font-size: .8em;
+  }
+  
 }
 
 @media (max-width:600px) {
