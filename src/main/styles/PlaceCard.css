@@ -96,11 +96,11 @@
   width: 50%;
 }
 .dust-text-box p:first-child{
-  font-size: 12px;
+  font-size: .75em;
   color: #333;
 }
 .dust-text-box p:last-child{
-  font-size: 15px;
+  font-size: .95em;
   color: #fff;
   padding: 8px 0 5px 0;
 }

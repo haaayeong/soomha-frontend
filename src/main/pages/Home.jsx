@@ -16,6 +16,7 @@ function Home(){
       <MainVisual/>
       <MainGoodPlace/>
       <MainAllPlace/>
+      
     </main>
   )
 }
