@@ -6,14 +6,20 @@ import LoginState from "./LoginState";
 
 import '../styles/Header.css'
 import '../styles/Header-media.css'
+import { useNavigate } from "react-router-dom";
 
 
 function Header(){
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    navigate(path);  
+  } 
   return(
     <header>
       <div className="nav-left">
-        <h1>숨하</h1>
-        <WindowNav/>
+        <h1 onClick={()=>{handleNavigation('/')}}>숨하</h1>
+        <WindowNav handleNavigation={handleNavigation}/>
       </div>
       <div className="nav-right">
         <div className="search-box">
@@ -29,7 +35,7 @@ function Header(){
         
       </div>
       
-      <MobileNav/>
+      <MobileNav handleNavigation={handleNavigation}/>
     </header>
   )
 }
