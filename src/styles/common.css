@@ -16,6 +16,9 @@ span,em,strong{display: inline-block;}
   font-size:16px;
   box-sizing:border-box;
 }
+main{
+  overflow: clip;
+}
 
 /* 폰트 import */
 @font-face {

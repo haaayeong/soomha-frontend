@@ -12,7 +12,7 @@
   .window-nav,.login-btn,.login-state{
     display: none;
   }
-  .mobile-nav{
+  .mobile-nav,.mobile-login-btn{
     display: block;
   } 
 }
@@ -23,6 +23,9 @@
   }
   .nav-left h1{
     font-size: 1.2em;
+  }
+  .mobile-sidebar {
+    width: 70%;
   }
 }
 @media (max-width:450px) {

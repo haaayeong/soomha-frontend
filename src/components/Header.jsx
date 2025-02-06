@@ -22,12 +22,13 @@ function Header(){
         </div>
 
         {/* 로그인 안했을 때 */}
-        {/* <LoginBtn/> */}
+        <LoginBtn/>
 
         {/* 로그인 했을 때 */}
-        <LoginState/>
+        {/* <LoginState/> */}
         
       </div>
+      
       <MobileNav/>
     </header>
   )
