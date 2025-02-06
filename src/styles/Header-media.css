@@ -9,7 +9,7 @@
     max-width: auto;
     width: 100vw;
   }
-  .window-nav,.login-btn{
+  .window-nav,.login-btn,.login-state{
     display: none;
   }
   .mobile-nav{
