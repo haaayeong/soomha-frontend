@@ -42,6 +42,13 @@ function MobileNav() {
             <span>건강정보</span>
           </div>
         </div>
+        <div className="sidebar-weather">
+          <span>서울</span>
+          <p>
+            <span>-5/ 6 도</span>
+            <i className="fa-solid fa-sun"></i>
+          </p>
+        </div>
       </div>
     </>
   )

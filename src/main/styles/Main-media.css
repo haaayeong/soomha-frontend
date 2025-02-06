@@ -83,7 +83,9 @@
   }
 
 
-
+  .main-quiz{
+    margin-top: 75px;
+  }
   .main-quiz-box{
     padding: 60px 0;
   }
@@ -159,6 +161,9 @@
 
 
 
+  .main-quiz{
+    margin-top: 45px;
+  }
   .main-quiz-box{
     padding: 30px 0;
   }
