@@ -3,7 +3,7 @@
   .main-visual{
     max-width: 95%;
   }
-  .main-good-place,.main-all-place{
+  .main-good-place,.main-all-place,.dust-board{
     max-width: 85%;
   }
 }
@@ -17,7 +17,7 @@
     font-size: 1em;
   }
   .place-card{
-    width: 280px;
+    width: 300px;
   }
   .main-place-top h2{
     font-size: 1.2em;
@@ -33,13 +33,37 @@
     font-size: .8em;
   }
   .dust-text-box{
+    font-size: 0.85em;
+    width: 55%;
+  }
+  .dust-icon-box{
+
+  }
+  .dust-icon-box p:first-child{
+    font-size: 8px;
+  }
+  .dust-icon-box p:last-child i{
+    font-size: 1.5em;
+  }
+  .dust-board-nav-box{
+    width: 300px;
+  }
+  .dust-board-nav-box h2{
+    font-size: 1.2em;
+  }
+  .dust-board-nav-box button{
+    padding: 7px 40px;
+    border-radius: 5px;
     font-size: 0.9em;
   }
-  
+
 }
 
 @media (max-width:600px) {
   .main-visual figure figcaption{
     font-size: .7em;
+  }
+  .dust-board-nav-box{
+    width: 250px;
   }
 }
