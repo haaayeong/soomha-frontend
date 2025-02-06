@@ -3,7 +3,7 @@
   .main-visual{
     max-width: 95%;
   }
-  .main-good-place,.main-all-place,.dust-board,.main-health{
+  .main-good-place,.main-all-place,.dust-board,.main-health,.main-quiz{
     max-width: 85%;
   }
 }
@@ -81,6 +81,33 @@
   .main-health-warning{
     font-size: 1em;
   }
+
+
+
+  .main-quiz-box{
+    padding: 60px 0;
+  }
+  .main-quiz-text{
+    font-size: 1.2em;
+  }
+  .o-box,.x-box {
+    width: 150px;
+    height: 90px;
+  }
+  .o-box p {
+    width: 50px;
+    height: 50px;
+  }
+  .o-box:hover p{
+    border: 5px solid #fff;
+  }
+  .x-box p {
+    width: 50px;
+    height: 7px;
+  }
+  
+
+
 }
 @media (max-width:700px) {
   .main-health-text-box{
@@ -127,4 +154,28 @@
     font-size: .7em;
   }
 
+
+
+  .main-quiz-box{
+    padding: 30px 0;
+  }
+  .main-quiz-text{
+    font-size: .8em;
+    padding-bottom:15px;
+  }
+  .o-box,.x-box {
+    width: 100px;
+    height: 70px;
+  }
+  .o-box p {
+    width: 30px;
+    height: 30px;
+  }
+  .o-box:hover p{
+    border: 5px solid #fff;
+  }
+  .x-box p {
+    width: 30px;
+    height: 5px;
+  }
 }

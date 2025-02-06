@@ -6,6 +6,7 @@ import MainGoodPlace from '../components/MainGoodPlace';
 import MainAllPlace from '../components/MainAllPlace';
 import DustBoard from '../components/DustBoard';
 import MainHealth from '../components/MainHealth';
+import MainQuiz from '../components/MainQuiz';
 
 import '../styles/Home.css'
 import '../styles/Main-media.css'
@@ -20,6 +21,7 @@ function Home(){
       <MainAllPlace/>
       <DustBoard/>
       <MainHealth/>
+      <MainQuiz/>
     </main>
   )
 }
