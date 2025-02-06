@@ -125,6 +125,9 @@
   .main-place-top p{
     width: 50px;
   }
+  .main-place-top p::after{
+    display: none;
+  }
   .dust-board-nav-box{
     width: 250px;
   }

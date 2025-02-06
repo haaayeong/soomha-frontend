@@ -25,9 +25,9 @@ function MobileNav() {
         <i className="fa-solid fa-chevron-right" onClick={toggleSidebar}></i>
         <div className="mobile-sidebar-login">
           {/* 로그인 안했을때 */}
-          {/* <LoginBtn bool={true} /> */}
+          <LoginBtn bool={true} />
           {/* 로그인했을때 */}
-          <MobileState/>
+          {/* <MobileState/> */}
         </div>
         <div className="mobile-nav-tab">
           <div className="user-info-content mobile-nav-content">

@@ -22,6 +22,20 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+  position: relative;
+}
+.main-place-top p::after{
+  content: '자세히보기';
+  font-size: 0.7em;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #86c1e0;
+  transition: .5s;
+  opacity: 0;
+}
+.main-place-top p:hover::after{
+  opacity: 1;
 }
 
 
