@@ -7,6 +7,8 @@ import MainAllPlace from '../components/MainAllPlace';
 import DustBoard from '../components/DustBoard';
 import MainHealth from '../components/MainHealth';
 import MainQuiz from '../components/MainQuiz';
+import Footer from '../../components/Footer';
+
 
 import '../styles/Home.css'
 import '../styles/Main-media.css'
@@ -22,6 +24,7 @@ function Home(){
       <DustBoard/>
       <MainHealth/>
       <MainQuiz/>
+      <Footer/>
     </main>
   )
 }

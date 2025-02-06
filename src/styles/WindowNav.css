@@ -8,6 +8,27 @@
   align-items: center;
   gap: 40px;
 }
-.window-nav ul li{
+/* 네비게이션 호버 애니메이션 */
+.window-nav ul li {
   font-family: 'Pretendard-Regular';
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  padding: 5px 0;
+}
+
+.window-nav ul li::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #A7C7E7;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.window-nav ul li:hover::after {
+  width: 100%;
+  left: 0;
 }

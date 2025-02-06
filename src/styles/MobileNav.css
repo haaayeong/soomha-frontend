@@ -2,7 +2,9 @@
   display: none;
 }
 
-.hambuger{}
+.hambuger{
+  cursor: pointer;
+}
 .hambuger li{
   width: 30px;
   height: 3px;
