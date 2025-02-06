@@ -1,0 +1,67 @@
+.main-health{
+  max-width: 1350px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.main-health-top h2{
+  letter-spacing: 0;
+}
+
+.main-health-box{
+  width: 100%;
+  background-color: #f1f1f1;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.main-health-content{
+  padding: 90px 0 70px 0;
+}
+
+.main-health-text-box{
+  line-height: 1.5;
+}
+.main-health-text-box span{
+  font-size: 1.2em;
+}
+.main-health-text-box span strong{
+  font-size: 1.3em;
+  color: #519c90;
+
+}
+.main-health-text-box small{
+  font-size: 0.95em;
+}
+.br{
+  display: none;
+}
+
+.main-health-count-box{
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.main-health-count-box div{
+  background-color: #8bcdcd;
+  margin: 40px 0 80px 0;
+  border-radius: 10px;
+}
+.main-health-count-box div p:first-child{
+  padding-top: 15px;
+  color: #444;
+  font-size: 1.2em;
+}
+.main-health-count-box div p:last-child{
+  padding: 35px 80px;
+  font-size: 2em;
+  font-family: 'GmarketSansMedium';
+}
+
+.main-health-warning{
+  font-size: 1.2em;
+}
+.main-health-warning span{
+  font-size: 1.3em;
+  color: red;
+}

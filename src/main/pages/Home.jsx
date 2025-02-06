@@ -5,6 +5,7 @@ import MainVisual from "../components/MainVisual";
 import MainGoodPlace from '../components/MainGoodPlace';
 import MainAllPlace from '../components/MainAllPlace';
 import DustBoard from '../components/DustBoard';
+import MainHealth from '../components/MainHealth';
 
 import '../styles/Home.css'
 import '../styles/Main-media.css'
@@ -18,6 +19,7 @@ function Home(){
       <MainGoodPlace/>
       <MainAllPlace/>
       <DustBoard/>
+      <MainHealth/>
     </main>
   )
 }

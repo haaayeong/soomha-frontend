@@ -3,7 +3,7 @@
   .main-visual{
     max-width: 95%;
   }
-  .main-good-place,.main-all-place,.dust-board{
+  .main-good-place,.main-all-place,.dust-board,.main-health{
     max-width: 85%;
   }
 }
@@ -57,13 +57,74 @@
     font-size: 0.9em;
   }
 
+  
+  .main-health-content{
+    padding: 60px 0 50px 0
+  }
+  .main-health-text-box{
+    font-size: 0.8em;
+  }
+  .main-health-count-box{
+    gap: 10px;
+  }
+  .main-health-count-box div{
+    margin: 20px 0 40px 0;
+    font-size: 0.9em;
+  }
+  .main-health-count-box div p:first-child{
+    font-size: 1.0em;
+  }
+  .main-health-count-box div p:last-child{
+    padding: 15px 40px;
+    font-size: 1.5em;
+  }
+  .main-health-warning{
+    font-size: 1em;
+  }
+}
+@media (max-width:700px) {
+  .main-health-text-box{
+    width: 90%;
+    margin: auto;
+    font-size: 0.6em;
+  }
 }
 
 @media (max-width:600px) {
+
   .main-visual figure figcaption{
     font-size: .7em;
+  }
+  .main-place-top p{
+    width: 50px;
   }
   .dust-board-nav-box{
     width: 250px;
   }
+
+  .main-health-content{
+    padding: 45px 0 35px 0
+  }
+  .main-health-text-box{
+    font-size: 0.5em;
+    line-height: 1.7;
+  }
+  .br{
+    display: block;
+  }
+
+  .main-health-count-box div{
+    margin: 10px 0 20px 0;
+    font-size: 0.5em;
+  }
+  .main-health-count-box div p:first-child{
+    padding-top: 7px;
+  }
+  .main-health-count-box div p:last-child{
+    padding: 7px 20px;
+  }
+  .main-health-warning{
+    font-size: .7em;
+  }
+
 }
