@@ -1,0 +1,119 @@
+.dust-by-region {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative; /* 표와 팝업 위치를 컨트롤하기 위해 */
+  z-index: 1;
+}
+
+.dust-map-container {
+  height: 100%;
+  width: 100%;
+}
+
+.dust-info-table {
+  background-color: white;
+  padding: 10px;
+  width: 300px;
+  position: absolute;
+  bottom: 10px;
+  right: 40px;
+  border-radius: 8px;
+  z-index: 1000; /* 지도보다 위로 떠 있도록 설정 */
+}
+
+.dust-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.dust-buttons button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #eee;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.dust-buttons button.active {
+  background-color: #68aaf1;
+  color: white;
+}
+
+.dust-by-region table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.dust-by-region th,.dust-by-region td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+  font-weight: 500;
+}
+
+.dust-by-region th {
+  background-color: #f9f9f9;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* 팝업 스타일 */
+.custom-popup .leaflet-popup-content-wrapper {
+  border-radius: 8px; /* 둥근 모서리 */
+  z-index: 1100; /* 팝업이 다른 요소보다 위로 떠 있도록 */
+  margin: 0;
+  padding: 0;
+}
+.leaflet-popup-content{
+  margin: 0;
+  border: none;
+}
+
+.custom-popup .leaflet-popup-tip {
+  display: none; /* 말풍선 제거 */
+}
+
+.custom-popup div {
+  font-size: 11px;
+}
+.custom-popup div strong{
+  font-size: 1em;
+}
+.custom-popup div strong{
+  font-size: 1em;
+}
+.custom-popup div p {
+  color: white;
+  font-size: 1.2em;
+  margin: 3px 0;
+}
+
+
+
+/* 미세먼지 색상에 따른 스타일 */
+.custom-popup .good {
+  background-color: #2196F3; /* 좋음 (파랑) */
+}
+
+.custom-popup .normal {
+  background-color: #4CAF50; /* 보통 (초록) */
+}
+
+.custom-popup .bad {
+  background-color: #FFEB3B; /* 나쁨 (노랑) */
+}
+
+.custom-popup .very-bad {
+  background-color: #F44336; /* 매우 나쁨 (빨강) */
+}
+
+.custom-popup .under-check {
+  background-color: #9E9E9E; /* 점검중 (회색) */
+}
+
+
