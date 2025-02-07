@@ -22,8 +22,8 @@
 }
 
 .sub-nav ul li {
-  border-radius: 20px;
-  padding: 15px 20px;
+  border-radius: 15px;
+  padding: 13px 5px;
   margin: 25px 0;
 }
 
@@ -31,10 +31,7 @@
   background-color: #eee;
 }
 
-.where-content {
-  margin-top: 40px;
-  padding-left: 25px;
-}
+
 
 @media (max-width:1600px) {
   .ctrl-box {

@@ -1,0 +1,36 @@
+@media (max-width:1400px) {
+  
+}
+
+
+
+@media (max-width:900px) {
+  .where-filter-box{
+    flex-direction: column;
+  }
+  .filter-group{
+    font-size: 0.9em;
+  }
+  .filter-select {
+    padding: 3px 10px;
+  }
+}
+
+@media (max-width:600px) {
+  .where-content{
+    margin-top: 20px;
+  }
+  .where-tab{
+    justify-content: center;
+  }
+  .where-tab button{
+    width: 100%;
+  }
+}
+
+@media (max-width:600px) {
+  .where-tab button{
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
