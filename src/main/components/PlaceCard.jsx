@@ -4,7 +4,7 @@ function PlaceCard({bool}){
   return(
     <div className="place-card">
       <div className="place-card-img-box">
-        <img src="/images/300.jpg" alt="장소이미지" />
+        <img src="/images/thumb.jpg" alt="장소이미지" />
       </div>
       <h3>장소이름</h3>
       <div className="main-weather-box">

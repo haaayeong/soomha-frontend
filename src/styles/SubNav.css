@@ -7,7 +7,7 @@
 }
 
 .sub-nav {
-  width: 200px;
+  min-width: 200px;
   height: 70vh;
   position: sticky;
   left: 0;
