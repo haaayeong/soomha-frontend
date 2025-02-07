@@ -26,6 +26,10 @@
   background-color: #333; /* 활성화 시 배경 */
   color: #fff; /* 활성화 시 글씨 색 */
 }
+.where-tab button:hover{
+  background-color: #555;
+  color: #fff;
+}
 
 
 .where-filter-box {
@@ -70,6 +74,58 @@ label {
   padding: 10px; /* 여백 추가 */
   font-size: 1em;
 }
+
+
+
+.next-search-box{
+  margin-top: 10px;
+  width: 300px;
+}
+.next-search-box div{
+  position: relative;
+}
+.next-search-box div input{
+  width: 100%;
+  padding: 5px 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  font-size: 0.9em;
+
+}
+.next-search-box div i{}
+
+
+#next-week-search:focus {
+  border-color: #68aaf1;
+  box-shadow: 0 0 5px rgba(116, 177, 241, 0.5);
+  outline: none;
+}
+.next-search-box div i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translate(50%, -50%);
+  color: #ccc;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+#next-week-search:focus + i {
+  color: #007bff;
+  animation: search-ani 1.5s linear alternate infinite;
+}
+
+.next-search-box span{
+  font-size: 0.7em;
+  color: #999;
+}
+
+
+
+
+
 
 
 .where-cards{

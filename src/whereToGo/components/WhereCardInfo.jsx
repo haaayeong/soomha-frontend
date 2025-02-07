@@ -1,4 +1,4 @@
-function WhereCardInfo() {
+function WhereCardInfo({ isNextWeek }) {
   return (
     <div className="where-card-info">
       <p className="card-title">서울 롯데월드</p>
@@ -10,16 +10,21 @@ function WhereCardInfo() {
       </div>
 
       <div className="card-weather-box">
-        <div className="card-weather">
-          <p>기온</p>
-          <i className="fa-solid fa-sun"></i>
-          <p>-5 / 6 도</p>
-        </div>
-        <div className="card-weather">
-          <p>강수확률</p>
-          <p>10%</p>
-        </div>
-        <div className="card-weather">
+        {!isNextWeek && (
+          <>
+            <div className="card-weather card-weather-temp">
+              <p>기온</p>
+              <i className="fa-solid fa-sun"></i>
+              <p>-5 / 6 도</p>
+            </div>
+            <div className="card-weather card-weather-precip">
+              <p>강수확률</p>
+              <p>10%</p>
+            </div>
+          </>
+        )}
+
+        <div className="card-weather card-weather-dust">
           <div className="dust-index">
             <p>미세먼지</p>
             <p>30 µg/m³</p>
@@ -32,7 +37,7 @@ function WhereCardInfo() {
             <p></p>
           </div>
         </div>
-        <div className="card-weather">
+        <div className="card-weather card-weather-dust">
           <div className="dust-index">
             <p>초미세먼지</p>
             <p>30 µg/m³</p>

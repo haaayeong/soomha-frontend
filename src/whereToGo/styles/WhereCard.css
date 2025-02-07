@@ -90,7 +90,7 @@
 }
 
 /* 1️⃣ 첫 번째 박스 (p-i, p-i 구조) */
-.card-weather:first-child {
+.card-weather-temp {
   grid-template-columns: 1fr 1fr;
   /* p는 1칸, i는 2칸 */
   grid-template-rows: repeat(2, auto);
@@ -98,7 +98,7 @@
 }
 
 /* 첫 번째 p태그 (왼쪽 위) */
-.card-weather:first-child p:first-of-type {
+.card-weather-temp p:first-of-type {
   grid-column: 1;
   grid-row: 1;
   color: #333;
@@ -107,7 +107,7 @@
 }
 
 /* 두 번째 p태그 (왼쪽 아래) */
-.card-weather:first-child p:last-of-type {
+.card-weather-temp p:last-of-type {
   grid-column: 1;
   grid-row: 2;
   font-size: 1em;
@@ -117,7 +117,7 @@
 }
 
 /* i 태그 (오른쪽 전체 차지) */
-.card-weather:first-child i {
+.card-weather-temp i {
   grid-column: 2;
   grid-row: span 2;
   /* 위아래 전부 차지 */
@@ -127,27 +127,26 @@
 }
 
 /* 2️⃣ 두 번째 박스 (p, p 위아래) */
-.card-weather:nth-child(2) {
+.card-weather-precip {
   grid-template-columns: 1fr;
   grid-template-rows: repeat(2, auto);
   align-items: center;
 
 }
 
-.card-weather:nth-child(2) p:first-child {
+.card-weather-precip p:first-child {
   color: #333;
   font-size: 0.65em;
 }
 
-.card-weather:nth-child(2) p:last-child {
+.card-weather-precip p:last-child {
   color: #fff;
   font-size: 1em;
   font-weight: bold;
 }
 
 /* 3️⃣, 4️⃣ 세 번째 & 네 번째 박스 (좌우 정렬) */
-.card-weather:nth-child(3),
-.card-weather:nth-child(4) {
+.card-weathe-dust{
   grid-template-columns: 1fr 1fr;
   /* 2개를 좌우 정렬 */
   grid-template-rows: auto auto;
