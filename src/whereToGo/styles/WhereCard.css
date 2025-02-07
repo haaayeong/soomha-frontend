@@ -1,12 +1,22 @@
 .where-card {
   display: flex;
-  padding: 10px 0;
+  padding: 10px 10px;
   gap: 15px;
+  align-items: center;
+  border-radius: 15px;
+  transition: .5s;
+  cursor: pointer;
+}
+.where-card:hover{
+  background-color: #eee;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
 
 .where-thumb {
-  width: 300px;
-  height: 270px;
+  min-width: 300px;
+  max-width: 200px;
+  height: 200px;
   border-radius: 25px;
   overflow: hidden;
 }

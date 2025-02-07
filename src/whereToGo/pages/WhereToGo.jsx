@@ -1,4 +1,5 @@
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import SubNav from "../../components/SubNav";
 import SelectFilter from "../components/SelectFilter";
 import WhereCard from "../components/WhereCard";
@@ -21,11 +22,15 @@ function WhereToGo() {
           <SelectFilter />
 
           <article className="where-cards">
-            <WhereCard/>
+            {[...Array(8)].map((_, index) => (
+              <WhereCard key={index} />
+            ))}
           </article>
+
 
         </section>
       </div>
+      <Footer/>
     </main>
   )
 }

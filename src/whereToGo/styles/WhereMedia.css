@@ -1,35 +1,51 @@
-@media (max-width:1400px) {
-  
-}
-
-
-
-@media (max-width:900px) {
-  .where-filter-box{
+@media (max-width:1600px) {
+  .where-card {
     flex-direction: column;
   }
-  .filter-group{
+}
+
+@media (max-width:1200px) {
+  .dust-index{
     font-size: 0.9em;
   }
+}
+
+@media (max-width:900px) {
+  .where-filter-box {
+    flex-direction: column;
+  }
+
+  .filter-group {
+    font-size: 0.9em;
+  }
+
   .filter-select {
     padding: 3px 10px;
   }
+  .where-cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width:600px) {
-  .where-content{
+  .where-content {
     margin-top: 20px;
   }
-  .where-tab{
+
+  .where-tab {
     justify-content: center;
   }
-  .where-tab button{
+
+  .where-tab button {
     width: 100%;
+  }
+  .where-card{
+    padding: 10px 5px;
   }
 }
 
 @media (max-width:600px) {
-  .where-tab button{
+  .where-tab button {
     font-size: 12px;
     padding: 5px 10px;
   }
