@@ -1,9 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/SubNav.css'
 import { useState } from 'react';
 
 function SubNav() {
-  const [isActive, setIsActive] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleNavigation = (path) => {
@@ -14,18 +14,16 @@ function SubNav() {
     <div className="sub-nav">
       <ul>
         <li
-          className={isActive ? "" : "active"}
+            className={location.pathname === "/whereToGo" ? "active" : ""}
           onClick={() => {
-            setIsActive(false);
             handleNavigation('/whereToGo')
           }}
         >
           추천장소
         </li>
         <li
-          className={isActive ? "active" : ""}
+          className={location.pathname === "/whereToGo/region" ? "active" : ""}
           onClick={() => {
-            setIsActive(true);
             handleNavigation('/whereToGo/region')
           }}
         >
