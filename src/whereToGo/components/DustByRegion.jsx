@@ -32,46 +32,49 @@ function DustByRegion() {
     if (value <= 15) return "#5c8cdd"; // 좋음: 파랑 계열
     if (value <= 35) return "#65b24b"; // 보통: 초록 계열
     if (value <= 75) return "#e2d058"; // 나쁨: 노랑 계열
-    if (value >= 75) return "#ec7a7a"; 
+    if (value >= 75) return "#ec7a7a";
     return "#717b84";
   };
 
   return (
     <section className="dust-by-region where-content">
       <div className="dust-map-container">
-        <MapContainer
-          center={[36.5, 128]} // 한국 중심 위치
-          zoom={7}
-          style={{ width: "100%", height: "100%" }}
-          scrollWheelZoom={false} // 마우스 휠 확대 금지
-          dragging={false} // 지도 드래그 금지
-          zoomControl={false} // 확대/축소 버튼 제거
-        >
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          {regions.map((region, index) => (
-            <Popup
-              key={index}
-              position={[region.lat, region.lon]}
-              autoClose={false}
-              closeOnClick={false}
-              closeButton={false}
-              className="custom-popup"
-            >
-              <div
-                style={{
-                  backgroundColor: getPopupColor(dustType === "미세먼지" ? region.dust : region.ultrafine),
-                  padding: "6px 5px",
-                  borderRadius: "8px",
-                  color: "#fff",
-                  width: "100%"
-                }}
+        <div className="map-wrapper">
+          <MapContainer
+            center={[36.5, 128]} // 한국 중심 위치
+            zoom={7}
+            style={{ width: "100%", height: "100%" }}
+            className="map-container"
+            scrollWheelZoom={false} // 마우스 휠 확대 금지
+            dragging={false} // 지도 드래그 금지
+            zoomControl={false} // 확대/축소 버튼 제거
+          >
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            {regions.map((region, index) => (
+              <Popup
+                key={index}
+                position={[region.lat, region.lon]}
+                autoClose={false}
+                closeOnClick={false}
+                closeButton={false}
+                className="custom-popup"
               >
-                <strong>{region.name}</strong>
-                <p>{dustType === "미세먼지" ? `${region.dust} µg/m³` : `${region.ultrafine} µg/m³`}</p>
-              </div>
-            </Popup>
-          ))}
-        </MapContainer>
+                <div
+                  style={{
+                    backgroundColor: getPopupColor(dustType === "미세먼지" ? region.dust : region.ultrafine),
+                    padding: "6px 5px",
+                    borderRadius: "8px",
+                    color: "#fff",
+                    width: "100%"
+                  }}
+                >
+                  <strong>{region.name}</strong>
+                  <p>{dustType === "미세먼지" ? `${region.dust} µg/m³` : `${region.ultrafine} µg/m³`}</p>
+                </div>
+              </Popup>
+            ))}
+          </MapContainer>
+        </div>
       </div>
 
       {/* 미세먼지 및 초미세먼지 버튼과 표 */}

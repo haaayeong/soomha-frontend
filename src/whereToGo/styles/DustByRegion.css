@@ -7,9 +7,20 @@
 }
 
 .dust-map-container {
-  height: 100%;
+  position: relative;
   width: 100%;
+  height: 100%;
+  min-height: 300px; /* 모바일에서도 보기 좋게 최소 높이 설정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
+.map-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
 
 .dust-info-table {
   background-color: white;
@@ -26,6 +37,7 @@
   display: flex;
   gap: 10px;
   margin-bottom: 15px;
+  font-size: 1em;
 }
 
 .dust-buttons button {
@@ -36,6 +48,7 @@
   width: 100%;
   font-weight: bold;
   border-radius: 5px;
+  font-size: 1em;
 }
 
 .dust-buttons button.active {
@@ -46,19 +59,24 @@
 .dust-by-region table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
+  font-size: 1em;
 }
-
+.dust-info-table thead tr, .dust-info-table tbody tr{
+}
+.dust-info-table thead tr th, .dust-info-table tbody tr td{
+  font-size: 1em;
+}
 .dust-by-region th,.dust-by-region td {
   padding: 8px;
   text-align: center;
   border: 1px solid #ddd;
   font-weight: 500;
+  font-size: 1em;
 }
 
 .dust-by-region th {
   background-color: #f9f9f9;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: bold;
 }
 
@@ -117,3 +135,53 @@
 }
 
 
+/* 반응형 크기 조정 */
+@media (max-width: 1200px) {
+  .map-wrapper {
+    transform: scale(0.9);
+  }
+  .leaflet-container{
+    overflow: visible;
+  }
+
+
+  .dust-info-table{
+    width: auto;
+    padding: 5px;
+  }
+  .dust-buttons{
+    font-size: 0.8em;
+  }
+  .dust-buttons button{
+    padding: 7px 5px;
+    width: 70px;
+  }
+  .dust-info-table thead tr, .dust-info-table tbody tr{
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 992px) {
+  .map-wrapper {
+    transform: scale(0.8);
+  }
+  .dust-info-table{
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .map-wrapper {
+    transform: scale(0.7);
+  }
+}
+
+@media (max-width: 480px) {
+
+  .map-wrapper {
+    transform: scale(0.6);
+  }
+  .leaflet-control-attribution{
+    display: none;
+  }
+}
