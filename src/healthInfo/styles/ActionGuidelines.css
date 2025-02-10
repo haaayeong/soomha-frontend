@@ -1,0 +1,36 @@
+.action-guidelines {
+  margin-top: 40px;
+  padding: 0 25px;
+  width: 100%;
+  overflow: hidden;
+}
+
+
+
+
+/* 테이블 스타일 */
+.guideline-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.guideline-table th, .guideline-table td {
+  padding: 20px 15px;
+  text-align: center;
+  border: 1px solid #ccc;  /* 셀 테두리 색상 */
+}
+
+.guideline-table th {
+  background-color: #ebeef2;  /* 헤더 배경색 */
+  font-weight: bold;
+}
+
+.guideline-table td:first-child {
+  color: #fff;
+}
+
+/* 테이블을 조금 더 깔끔하게 스타일링 */
+.guideline-table {
+  overflow: hidden;
+}

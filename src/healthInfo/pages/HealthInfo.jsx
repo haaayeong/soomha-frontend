@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import SubNav from '../../components/SubNav';
@@ -11,7 +12,7 @@ function HealthInfo() {
       <Header />
       <div className="ctrl-box">
         <SubNav />
-        <HealthWarning />
+        <Outlet/>
       </div>
       <Footer />
     </main>
