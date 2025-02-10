@@ -37,7 +37,7 @@ function RegionSelect({ setArea }) {
           ))}
         </select>
   
-        <select value={city} onChange={handleCityChange}>
+        <select value={city} onChange={handleCityChange} id="city">
           <option value="">시군구</option>
           {cityOptions.map((option, index) => (
             <option key={index} value={option}>

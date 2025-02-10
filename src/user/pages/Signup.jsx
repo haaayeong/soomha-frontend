@@ -61,7 +61,7 @@ function Signup() {
           <p>가입 유형</p>
           <select value={role} onChange={handleRolechange}>
             <option value="">가입 유형 선택</option>
-            <option value="children">어린이</option>
+            <option value="child">어린이</option>
             <option value="parent">학부모</option>
             <option value="teacher">선생님</option>
           </select>
