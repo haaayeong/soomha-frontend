@@ -1,4 +1,5 @@
 import '../styles/HealthWarning.css'
+import HealthDataTable from './HealthDataTable';
 import { ManAllergy, WomanAllergy } from './ManAndWomanAllergy';
 
 function HealthWarning() {
@@ -36,6 +37,9 @@ function HealthWarning() {
         <ManAllergy />
         <WomanAllergy />
       </article>
+      
+      <h3>학습에 사용된 데이터</h3>
+      <HealthDataTable />
     </section>
   )
 }
