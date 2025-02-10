@@ -46,7 +46,7 @@ function EmailInput({ setEmail }) {
           <option value="custom">직접 입력</option>
         </select>
         
-        <button>인증번호 발송</button>
+        <button>인증메일 발송</button>
       </div>
       <div>
         <input

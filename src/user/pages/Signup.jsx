@@ -1,8 +1,10 @@
 import { useState } from "react";
 import EmailInput from "../components/EmailInput";
+import RegionSelect from "../components/RegionSelect";
 
 function Signup() {
   const [email, setEmail] = useState("");
+  const [area, setArea] = useState("");
 
   return(
     <div className="Signup">
@@ -63,12 +65,7 @@ function Signup() {
           <p>소속 유치원</p>
         </div>
 
-        <div id="area">
-          <p>사는 지역</p>
-          <p>* 서울특별시에 거주 -{">"} ex) 서울시 강동구 <br />
-              다른 지역에 거주 -{">"} ex) 경기도 수원시, 충청북도 괴산군
-          </p>
-        </div>
+        <RegionSelect setArea={setArea}/>
 
       </div>
     </div>
