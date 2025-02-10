@@ -1,0 +1,190 @@
+.health-warning {
+  margin-top: 40px;
+  padding: 0 25px;
+  width: 100%;
+}
+
+.health-warning h3 {
+  margin-bottom: 15px;
+}
+
+.today-health-warning {
+  margin-bottom: 30px;
+}
+
+
+.health-age-gender {
+  padding: 20px 30px;
+  background-color: #f1f1f1;
+  border-radius: 15px;
+}
+
+
+.gender-allergy-data {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin: 40px 0;
+  justify-content: center;
+
+}
+
+
+
+.gender-icon {
+  width: 150px;
+  height: 150px;
+}
+
+.gender-icon span img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.age-based-allergy-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.age-group {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.base-age {
+  padding: 7px 10px;
+  min-width:80px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.age-group:nth-of-type(1) .base-age {
+  background-color: #8bcdcd;
+}
+
+.age-group:nth-of-type(2) .base-age {
+  background-color: #86c1e0;
+}
+
+.age-group:nth-of-type(3) .base-age {
+  background-color: #af8bb7;
+}
+
+.allergy-box {
+  display: flex;
+  gap: 25px;
+}
+
+.allergy-type {
+  text-align: center;
+  background-color: #fff;
+  padding: 10px 20px;
+  width: 150px;
+  border-radius: 10px;
+
+}
+.age-group:nth-of-type(1) .allergy-type{
+  border: 3px solid #8bcdcd;
+}
+.age-group:nth-of-type(2) .allergy-type{
+  border: 3px solid #86c1e0;
+}
+.age-group:nth-of-type(3) .allergy-type{
+  border: 3px solid #af8bb7;
+}
+
+.allergy-type p{
+  font-size: 1em;
+}
+.allergy-type p:first-child{
+  color: #666;
+  margin-bottom: 5px;
+}
+.allergy-type p:last-child{
+  font-size: 1.5em;
+}
+
+
+@media (max-width:1200px) {
+  .health-warning .main-health-text-box {
+    font-size: .9em;
+  }
+
+  .health-warning .main-health-count-box div p:last-child {
+    padding: 25px 60px;
+  }
+  .gender-allergy-data{
+    flex-direction: column;
+  }
+}
+
+@media (max-width:1000px) {
+  .health-warning .br {
+    display: block;
+  }
+
+  .health-warning .main-health-text-box {
+    font-size: .8em;
+  }
+
+  .health-warning .main-health-count-box div p:last-child {
+    padding: 15px 40px;
+  }
+  .age-group,.allergy-box{
+    flex-direction: column;
+  }
+  .age-based-allergy-data{
+    flex-direction: row;
+  }
+  .allergy-type{
+    width: 100px;
+  }
+}
+
+@media (max-width:700px) {
+
+  .health-warning .main-health-text-box {
+    font-size: .6em;
+  }
+
+  .health-warning .main-health-count-box div p:last-child {
+    padding: 10px 20px;
+    font-size: 1.5em;
+  }
+
+  .health-warning .main-health-count-box div p:first-child {
+    font-size: 1em;
+  }
+  .allergy-type{
+    width: auto;
+    min-width: 70px;
+    font-size: .7em;
+  }
+}
+
+
+@media (max-width:600px) {
+  .gender-allergy-data{
+    margin:20px 0;
+    gap: 25px;
+  }
+  .gender-icon{
+    width: 100px;
+    height: 100px;
+  }
+  .age-based-allergy-data{
+    gap: 5px;
+  }
+  .allergy-box{
+    gap:5px;
+  }
+  .allergy-type{
+    font-size: .6em;
+    padding:5px
+  }
+}

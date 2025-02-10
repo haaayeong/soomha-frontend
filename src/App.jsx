@@ -4,6 +4,7 @@ import WhereToGo from "./whereToGo/pages/WhereToGo"
 import DustByRegion from "./whereToGo/components/DustByRegion"
 import WhereContent from "./whereToGo/components/WhereContent"
 import Quiz from "./quiz/pages/quiz"
+import HealthInfo from "./healthInfo/pages/HealthInfo"
 
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
           <Route path="region" element={<DustByRegion />} />
         </Route>
         <Route path="/quiz" element={<Quiz />} />
+        <Route path="/healthInfo" element={<HealthInfo />} >
+          <Route path="actionGuidelines" />
+        </Route>
       </Routes>
     </>
   )

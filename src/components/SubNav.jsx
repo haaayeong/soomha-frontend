@@ -23,8 +23,8 @@ function SubNav() {
     {
       path: '/healthInfo',
       items: [
-        { title: '건강주의', path: '/healthWarning' },
-        { title: '행동요령', path: '/actionGuidelines' },
+        { title: '건강주의', path: '/healthInfo' },
+        { title: '행동요령', path: '/healthInfo/actionGuidelines' },
       ],
     },
   ];
