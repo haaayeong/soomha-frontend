@@ -1,0 +1,147 @@
+*{
+  margin : 0;
+  padding : 0;
+  box-sizing: border-box;
+}
+
+.Signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.Signup .content-wrap {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.Signup h3 {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.Signup input, .Signup select, .Signup button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.Signup input[type="text"], .Signup input[type="password"] {
+  height: 40px;
+}
+
+.Signup button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  width: 150px;
+  transition: background-color 0.3s;
+}
+
+.Signup button:hover {
+  background-color: #45a049;
+}
+
+.Signup #id .input-container #id-check {
+  width: 100px;
+}
+
+.Signup p {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+.Signup .input-container {
+  display: flex;
+  align-items: center;
+}
+
+.Signup .input-container input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.Signup select {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.Signup select:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.Signup #role select {
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.Signup #id, .Signup #password, .Signup #confirm-password, .Signup #nickname, .Signup #role, .Signup #kindergarten {
+  margin-bottom: 20px;
+}
+
+.Signup button:disabled {
+  background-color: #bbb;
+  cursor: not-allowed;
+}
+
+.Signup input[type="text"]:focus, .Signup input[type="password"]:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.RegionSelect select {
+  max-width: 45%;
+  margin-right: 5%;
+}
+
+.RegionSelect div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.EmailInput select {
+  max-width: 100px;
+}
+
+.EmailInput input, .EmailInput select {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.EmailInput #Email #email-id {
+  margin-right: 0px;
+}
+
+.EmailInput #check {
+  margin-bottom: 30px;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .Signup .content-wrap {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .RegionSelect select {
+    max-width: 100%;
+    margin-right: 0;
+  }
+}

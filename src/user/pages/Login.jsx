@@ -1,15 +1,13 @@
 import { useNavigate } from "react-router-dom";
+import "../style/Login.css";
 
 function Login() {
   const navigate = useNavigate();
 
   return(
     <div className="login">
-      <div className="title-wrap">
-        <h2>로그인</h2>
-      </div>
-
       <div className="content-wrap">
+        <h3>로그인</h3>
         <input type="text" name="username" placeholder="아이디를 입력하세요"/>
         <input type="text" name="password" placeholder="비밀번호를 입력하세요"/>
         <button>로그인</button>

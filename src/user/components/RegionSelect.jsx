@@ -1,5 +1,6 @@
 import { useState } from "react";
 import regionsData from '../../data/regions.json';
+import '../style/Signup.css';
 
 function RegionSelect({ setArea }) {
   const [province, setProvince] = useState('');
@@ -26,27 +27,25 @@ function RegionSelect({ setArea }) {
   return (
     <div className="RegionSelect">
       <p>사는 지역</p>
-      <select value={province} onChange={handleProvinceChange}>
-        <option value="">시도</option>
-        {Object.keys(regionsData).map((province, index) => (
-          <option key={index} value={province}>
-            {province}
-          </option>
-        ))}
-      </select>
-
-      {province && (
-        <>
-          <select value={city} onChange={handleCityChange}>
-            <option value="">시군구</option>
-            {cityOptions.map((option, index) => (
-              <option key={index} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </>
-      )}
+      <div>
+        <select value={province} onChange={handleProvinceChange}>
+          <option value="">시도</option>
+          {Object.keys(regionsData).map((province, index) => (
+            <option key={index} value={province}>
+              {province}
+            </option>
+          ))}
+        </select>
+  
+        <select value={city} onChange={handleCityChange}>
+          <option value="">시군구</option>
+          {cityOptions.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 };

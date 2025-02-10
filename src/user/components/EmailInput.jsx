@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../style/Signup.css';
 
 function EmailInput({ setEmail }) {
   const [ localPart, setLocalPart ] = useState(""); // 이메일의 아이디 부분 저장
@@ -17,43 +18,47 @@ function EmailInput({ setEmail }) {
     <div className="EmailInput">
       <div id="Email">
         <p>이메일</p>
-        <input
-        type="text"
-        value={localPart}
-        onChange={(e) => {
-          setLocalPart(e.target.value);
-          handleEmailChange();
-        }}
-        placeholder="이메일 아이디"
-        />
-        @
-        <input
+        <div className="input-container">
+          <input
           type="text"
-          value={domain}
-          onChange={(e) => setDomain(e.target.value)}
-          disabled={!isCustom} // 직접 입력을 선택하면 활성화, 아니면 비활성화
-        />
-        <select
+          value={localPart}
           onChange={(e) => {
-            setIsCustom(e.target.value === "custom");
-            setDomain(e.target.value === "custom" ? "" : e.target.value);
+            setLocalPart(e.target.value);
+            handleEmailChange();
           }}
-        >
-          <option value="">선택</option>
-          <option value="gmail.com">gmail.com</option>
-          <option value="naver.com">naver.com</option>
-          <option value="daum.net">daum.net</option>
-          <option value="custom">직접 입력</option>
-        </select>
-        
-        <button>인증메일 발송</button>
+          placeholder="이메일 아이디"
+          id="email-id"
+          />
+          @
+          <input
+            type="text"
+            value={domain}
+            onChange={(e) => setDomain(e.target.value)}
+            disabled={!isCustom} // 직접 입력을 선택하면 활성화, 아니면 비활성화
+          />
+          <select
+            onChange={(e) => {
+              setIsCustom(e.target.value === "custom");
+              setDomain(e.target.value === "custom" ? "" : e.target.value);
+            }}
+            id="email-select"
+          >
+            <option value="">선택</option>
+            <option value="gmail.com">gmail.com</option>
+            <option value="naver.com">naver.com</option>
+            <option value="daum.net">daum.net</option>
+            <option value="custom">직접 입력</option>
+          </select>
+          
+        </div>
+          <button>인증메일 발송</button>
       </div>
       <div>
         <input
         type="text"
         placeholder="인증번호 입력"
         />
-        <button>확인</button>
+        <button id="check">확인</button>
       </div>
     </div>
   )
