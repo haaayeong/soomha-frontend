@@ -4,12 +4,13 @@ import '../styles/DetailWhere.css'
 import DetailCardInfo from './DetailCardInfo';
 import CommentInput from './CommentInput';
 import { setupMap } from '../../utils/kakaoSearch';
+import { useNavigate } from 'react-router-dom';
 
 function DetailWhere() {
   const [comments, setComments] = useState([]);  // 댓글 목록 상태
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const subImageContainerRef = useRef(null);  // 썸네일 스크롤을 조작할 ref
-
+  const navigate = useNavigate();
 
   const images = [
     "/images/thumb.jpg",
@@ -58,11 +59,14 @@ function DetailWhere() {
     setCurrentImageIndex(index);
   };
 
+  const handleGoBack = () => {
+    navigate(-1); // -1은 이전 페이지로 돌아가라는 의미입니다.
+  };
 
   return (
     <section className="detail-where">
-      <button className='detail-back'>
-        <i className="fa-solid fa-chevron-left"></i>뒤로가기
+      <button className='detail-back'onClick={handleGoBack}>
+        <i className="fa-solid fa-chevron-left" ></i>뒤로가기
       </button>
 
       <article className="detail-img-box">
