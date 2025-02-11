@@ -28,12 +28,14 @@ function EmailInput({ setEmail }) {
           }}
           placeholder="이메일 아이디"
           id="email-id"
+          required
           />
           @
           <input
             type="text"
             value={domain}
             onChange={(e) => setDomain(e.target.value)}
+            required
             disabled={!isCustom} // 직접 입력을 선택하면 활성화, 아니면 비활성화
           />
           <select
