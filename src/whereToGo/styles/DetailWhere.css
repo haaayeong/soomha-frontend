@@ -52,6 +52,7 @@
 
 .detail-main-img {
   width: 100%;
+  height: 500px;
   position: relative;
   overflow: hidden;
   border-radius: 30px;
@@ -62,6 +63,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
 }
 
 .detail-main-img button {
@@ -77,7 +79,8 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 
 }
-.detail-main-img button i{
+
+.detail-main-img button i {
   font-size: 1.5em;
 }
 
@@ -87,7 +90,7 @@
   left: -50%;
   top: 50%;
   transform: translateY(-50%);
-  
+
 }
 
 .detail-main-img .detail-img-btn-right {
@@ -95,15 +98,18 @@
   top: 50%;
   transform: translateY(-50%);
 }
-.detail-main-img:hover .detail-img-btn-left{
+
+.detail-main-img:hover .detail-img-btn-left {
   left: 5%;
   opacity: 1;
 }
+
 .detail-main-img:hover .detail-img-btn-right {
   right: 5%;
   opacity: 1;
 }
-.detail-main-img button:hover{
+
+.detail-main-img button:hover {
   color: #333;
   background-color: #f1f1f1;
   border: 1px solid #eee;
@@ -140,7 +146,9 @@
 
 .detail-sub-img p {
   min-width: 300px;
-  height: 200px;
+  max-width: 300px;
+  min-height: 200px;
+  max-height: 200px;
   overflow: hidden;
   border-radius: 25px;
   cursor: pointer;
@@ -150,6 +158,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: .7;
+}
+
+.detail-sub-img p.active img {
+  opacity: 1;
 }
 
 
@@ -177,25 +190,6 @@
   background-color: #fff;
 }
 
-@media (max-width:1600px) {
-  .detail-dash-board {
-    position: static;
-    transform: translateY(0) scale(1);
-    width: 1000px;
-    padding: 0;
-    padding-bottom: 20px;
-    border: none;
-    border-radius: 0;
-    border-bottom: 1px solid #ccc;
-    
-  }
-  .detail-dash-board .where-card-info .card-weather-box{
-    grid-template-columns: repeat(4,auto);
-  }
-
-}
-
-
 
 
 /* --------------- */
@@ -220,7 +214,7 @@
 
 .detail-place-info ul li strong {}
 
-#detail-map{
+#detail-map {
   width: 1000px;
   min-height: 400px;
   overflow: hidden;
@@ -296,4 +290,121 @@
 .comment-header span {
   font-size: 1em;
   letter-spacing: .5px;
+}
+
+
+/* 미디어 */
+
+@media (max-width:1600px) {
+  .detail-dash-board {
+    position: static;
+    transform: translateY(0) scale(1);
+    width: 1000px;
+    padding: 0;
+    padding-bottom: 20px;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #ccc;
+
+  }
+
+  .detail-dash-board .where-card-info .card-weather-box {
+    grid-template-columns: repeat(4, auto);
+  }
+
+}
+
+
+
+@media (max-width:1200px) {
+
+  .detail-img-box,
+  .detail-like,
+  .comment-box {
+    width: 100%;
+  }
+  .comment-box {
+    max-width: 100%;
+  }
+
+  #detail-map {
+    width: 100%;
+    min-height: 300px;
+  }
+
+    
+
+}
+
+@media (max-width:700px) {
+  .detail-main-img {
+    height: 400px;
+  }
+
+  .detail-dash-board {
+    width: auto;
+  }
+
+  .detail-dash-board .where-card-info .card-weather-box {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .comment-top-left{
+    font-size: .9em;
+  }
+  .comment-top-left .user-thumb{
+    width: 30px;
+    height: 30px;
+  }
+  .comment-top-left .user-nickname{
+    margin: 0 5px;
+  }
+
+  .comment-text > span,.comment-input .comment-text textarea{
+    font-size: 0.9em;
+  }
+  .comment-text button,.comment-input .comment-text button{
+    min-width: 70px;
+    font-size: 0.8em;
+  }
+
+}
+
+@media (max-width:500px) {
+  .detail-sub-img p {
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 100px;
+    max-height: 150px;
+  }
+
+  .detail-like button {
+    width: 100px;
+    padding: 10px 0;
+    font-size: .9em;
+  }
+
+  .detail-like button i {
+    font-size: .9em;
+  }
+
+  .comment-top-left{
+    font-size: .7em;
+  }
+  .comment-top-left .user-thumb{
+    width: 20px;
+    height: 20px;
+  }
+  .comment-top-left .best-label, .comment-top-left .role-level-label{
+    padding: 2px 6px;
+  }
+  .comment-text button,.comment-input .comment-text button{
+    min-width: 50px;
+    font-size: 0.7em;
+    padding: 2px;
+  }
+  .comment-text{
+    padding-left:10px;
+    padding-right: 5px;
+  }
 }

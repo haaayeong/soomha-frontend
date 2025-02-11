@@ -40,6 +40,7 @@
 .comment-top-left .user-nickname{
   margin: 0 15px;
   color: #555;
+  font-size: 1em;
 }
 .comment-top-left .comment-date{
   color: #555;
@@ -81,7 +82,7 @@
   white-space: pre-wrap; /* 줄바꿈과 공백을 유지하면서 줄바꿈 처리 */
 }
 .comment-text > span{
-  
+  font-size: 1em;
 }
 .comment-text button{
   padding: 5px;
@@ -91,10 +92,12 @@
   background-color: #ef4d4d;
   border: none;
   border-radius: 5px;
+  font-size: 1em;
 }
 .comment-text button span{
   color: #fff;
   margin: 0 3px;
+  font-size: 1em;
 }
 
 
@@ -111,6 +114,7 @@
 .comment-input .comment-text button{
   background-color: #666;
   color: #fff;
+  font-size: 1em;
 }
 .comment-input .comment-text textarea{
   padding: 10px;

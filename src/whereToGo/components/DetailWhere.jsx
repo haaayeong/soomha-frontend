@@ -1,17 +1,36 @@
-import { useEffect, useState } from 'react';
-import '../styles/DetailWhere.css'
+import { useEffect, useRef, useState } from 'react';
 import Comment from './Comment';
+import '../styles/DetailWhere.css'
 import DetailCardInfo from './DetailCardInfo';
 import CommentInput from './CommentInput';
 import { setupMap } from '../../utils/kakaoSearch';
 
 function DetailWhere() {
   const [comments, setComments] = useState([]);  // 댓글 목록 상태
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const subImageContainerRef = useRef(null);  // 썸네일 스크롤을 조작할 ref
+
+
+  const images = [
+    "/images/thumb.jpg",
+    "/images/thumb2.jpg",
+    "/images/thumb3.jpg",
+    "/images/thumb4.jpg",
+    "/images/thumb5.jpg"
+  ]; // 이미지 목록 (예시)
 
   useEffect(() => {
     const address = '서울 송파구 올림픽로 240'; // 디테일 페이지에 맞는 주소로 검색
     setupMap(address); // 주소를 넘겨서 지도 생성
-  }, []); 
+  }, []);
+
+  useEffect(() => {
+    // 썸네일 영역을 클릭된 이미지로 스크롤
+    if (subImageContainerRef.current) {
+      const targetThumbnail = subImageContainerRef.current.children[currentImageIndex];
+      targetThumbnail.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest'  });
+    }
+  }, [currentImageIndex]);
 
   const handleAddComment = (newCommentText) => {
     const newComment = {
@@ -25,6 +44,19 @@ function DetailWhere() {
   };
 
 
+  // 이미지 변경 함수
+  const goToNextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length); // 다음 이미지로 이동
+  };
+
+  const goToPrevImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length); // 이전 이미지로 이동
+  };
+
+  // 썸네일 클릭 처리 함수
+  const handleThumbnailClick = (index) => {
+    setCurrentImageIndex(index);
+  };
 
 
   return (
@@ -35,20 +67,24 @@ function DetailWhere() {
 
       <article className="detail-img-box">
         <div className="detail-main-img">
-          <img src="/images/thumb.jpg" alt="" />
-          <button className="detail-img-btn-left">
+          <img src={images[currentImageIndex]} alt="Main" />
+          <button className="detail-img-btn-left" onClick={goToPrevImage}>
             <i className="fa-solid fa-chevron-left"></i>
           </button>
-          <button className="detail-img-btn-right">
+          <button className="detail-img-btn-right" onClick={goToNextImage}>
             <i className="fa-solid fa-chevron-right"></i>
           </button>
         </div>
-        <div className="detail-sub-img">
-          <p><img src="/images/thumb.jpg" alt="" /></p>
-          <p><img src="/images/thumb.jpg" alt="" /></p>
-          <p><img src="/images/thumb.jpg" alt="" /></p>
-          <p><img src="/images/thumb.jpg" alt="" /></p>
-          <p><img src="/images/thumb.jpg" alt="" /></p>
+        <div className="detail-sub-img" ref={subImageContainerRef}>
+          {images.map((image, index) => (
+            <p
+              key={index}
+              onClick={() => handleThumbnailClick(index)}
+              className={index === currentImageIndex ? 'active' : ''}
+            >
+              <img src={image} alt={`Thumbnail ${index + 1}`} />
+            </p>
+          ))}
         </div>
       </article>
 
