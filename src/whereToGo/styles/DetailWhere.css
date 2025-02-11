@@ -316,14 +316,14 @@
 
 
 
-@media (max-width:1200px) {
+@media (max-width:1300px) {
 
   .detail-img-box,
   .detail-like,
   .comment-box {
     width: 100%;
   }
-  .comment-box {
+  .comment-box,.detail-like {
     max-width: 100%;
   }
 
