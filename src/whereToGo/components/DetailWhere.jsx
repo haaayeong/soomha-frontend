@@ -1,11 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../styles/DetailWhere.css'
 import Comment from './Comment';
 import DetailCardInfo from './DetailCardInfo';
 import CommentInput from './CommentInput';
+import { setupMap } from '../../utils/kakaoSearch';
 
 function DetailWhere() {
   const [comments, setComments] = useState([]);  // 댓글 목록 상태
+
+  useEffect(() => {
+    const address = '서울 송파구 올림픽로 240'; // 디테일 페이지에 맞는 주소로 검색
+    setupMap(address); // 주소를 넘겨서 지도 생성
+  }, []); 
 
   const handleAddComment = (newCommentText) => {
     const newComment = {
@@ -17,6 +23,9 @@ function DetailWhere() {
     };
     setComments([...comments, newComment]);  // 새로운 댓글 추가
   };
+
+
+
 
   return (
     <section className="detail-where">
@@ -68,7 +77,9 @@ function DetailWhere() {
           <ul>
             <li><strong>주소:</strong> 서울 송파구 올림픽로 240</li>
             <li><strong>상세 위치:</strong> 아이스링크 어드벤처동 지하 3층 4, 7호</li>
-            <li><strong>지도:</strong> [해당 주소에 대한 지도]</li>
+            <li>
+              <div id="detail-map"></div>
+            </li>
           </ul>
         </div>
 
@@ -100,10 +111,10 @@ function DetailWhere() {
           <span>(101)</span>
         </div>
         <div className="best-comments">
-        <Comment text="친구랑 같이 가서 사진만 300장 찍었어요! 📸 놀이기구보다 포토존이 더 재밌음 ㅋㅋ" user="햇님반어른이" date="2025.02.04" likes={50} />
+          <Comment text="친구랑 같이 가서 사진만 300장 찍었어요! 📸 놀이기구보다 포토존이 더 재밌음 ㅋㅋ" user="햇님반어른이" date="2025.02.04" likes={50} />
         </div>
         <div className="comments">
-        {comments.map((comment) => (
+          {comments.map((comment) => (
             <Comment
               key={comment.id}
               text={comment.text}
