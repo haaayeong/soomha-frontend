@@ -7,23 +7,31 @@
 
 
 
-
+.guide-content{
+  overflow-x: auto;
+  margin-bottom: 25px;
+}
 /* 테이블 스타일 */
 .guideline-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+
 }
 
 .guideline-table th, .guideline-table td {
   padding: 20px 15px;
   text-align: center;
   border: 1px solid #ccc;  /* 셀 테두리 색상 */
+  font-size: 1em;
 }
 
 .guideline-table th {
   background-color: #ebeef2;  /* 헤더 배경색 */
   font-weight: bold;
+  min-width: 100px;
+  font-size: 1em;
+
 }
 
 .guideline-table td:first-child {
@@ -33,4 +41,76 @@
 /* 테이블을 조금 더 깔끔하게 스타일링 */
 .guideline-table {
   overflow: hidden;
+}
+
+.guideline-table tr{
+  font-size: 1em;
+}
+
+
+.dust-guide-btns {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.dust-btn {
+  flex:1;
+  padding: 12px;
+  background-color: #eaeef8;
+  border: 1px solid transparent;
+  color: #0f62cc;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s;
+  border-radius: 10px;
+}
+
+.dust-btn.active {
+  background-color: #ffffff;
+  border: 1px solid #0f62cc;
+  font-weight: bold;
+}
+.dust-guide-img{
+  width: 95%;
+  height: 100%;
+  margin: auto;  
+  margin-top: 25px;
+}
+.dust-guide-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width:1000px) {
+  .dust-btn {
+    padding: 10px;
+  }
+  .dust-btn span{
+    font-size: .9em;
+  }
+}
+
+@media (max-width:900px) {
+  .guideline-table tbody,.guideline-table thead{
+    font-size: .65em;
+  }
+  .guideline-table th {
+    min-width: 75px;
+  }
+  .dust-btn {
+    flex: auto;
+  }
+}
+
+@media (max-width:600px) {
+  .dust-btn {
+    flex: auto;
+  }
+  .dust-btn span{
+    font-size: .8em;
+  }
 }

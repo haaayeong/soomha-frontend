@@ -7,7 +7,9 @@ import SubNav from "../../components/SubNav";
 
 
 import '../styles/WhereToGo.css'
+import '../styles/WhereCard.css'
 import '../styles/WhereMedia.css'
+
 
 function WhereToGo() {
   return (

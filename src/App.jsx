@@ -7,6 +7,7 @@ import Quiz from "./quiz/pages/quiz"
 import HealthInfo from "./healthInfo/pages/HealthInfo"
 import HealthWarning from "./healthInfo/components/HealthWarning"
 import ActionGuidelines from "./healthInfo/components/ActionGuidelines"
+import DetailWhere from "./whereToGo/components/DetailWhere"
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='/whereToGo' element={<WhereToGo />}>
           <Route path='' element={<WhereContent />} />
           <Route path="region" element={<DustByRegion />} />
+          <Route path=":pageNumber" element={<DetailWhere />} />
         </Route>
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/healthInfo" element={<HealthInfo />} >
