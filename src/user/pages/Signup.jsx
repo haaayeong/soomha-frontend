@@ -16,6 +16,7 @@ function Signup() {
   const [role, setRole] = useState(""); // 가입 유형 상태 저장
   const [kindergarten, setKindergarten] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // 에러 메세지 상태 관리
   const [usernameError, setUsernameError] = useState("");
@@ -38,6 +39,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     // 모든 필드 검사 실행
     setUsernameError(validateUsername(username));
@@ -77,12 +79,13 @@ function Signup() {
         alert(result.message);
         navigate("/login")
       } else {
-        alert(result.error);
+        alert(result.error || "회원가입에 실패했습니다.");
       }
     } catch(error) {
       console.error("Error : ", error);
       alert("회원가입에 실패했습니다.")
     }
+    setLoading(false);
   };
 
   return(
@@ -175,7 +178,9 @@ function Signup() {
 
           <RegionSelect setArea={setArea}/>
 
-          <button type="submit">회원가입</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "회원가입 중..." : "회원가입"}
+          </button>
         </form>
         {error && <p>{error}</p>}
       </div>
