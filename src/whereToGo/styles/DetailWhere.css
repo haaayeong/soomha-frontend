@@ -1,0 +1,196 @@
+
+.detail-where{
+  margin-top: 25px;
+  padding: 0 15px;
+  width: 100%;
+  position: relative;
+}
+
+.detail-back{
+  margin-bottom: 15px;
+  background-color: #eee;
+  padding: 5px 10px;
+  width: 150px;
+  color: #333; /* 텍스트 색상 */
+  border: 1px solid #ddd; /* 테두리 */
+  cursor: pointer; /* 마우스를 올렸을 때 포인터로 변경 */
+  transition: background-color 0.3s, border-color 0.3s; /* 배경색, 테두리 색상 변화 애니메이션 */
+}
+
+.detail-back i {
+  margin-right: 8px; /* 아이콘과 텍스트 사이의 간격 */
+  font-size: 15px; /* 아이콘 크기 */
+}
+
+.detail-back:hover {
+  background-color: #333; /* 호버 시 배경색 */
+  border-color: #bbb; /* 호버 시 테두리 색상 */
+  color: #fff;
+}
+
+.detail-back:active {
+  background-color: #ccc; /* 클릭 시 배경색 */
+}
+
+
+.detail-img-box{
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.detail-main-img{
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+}
+.detail-main-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-main-img button{
+  width: 65px;
+  height: 60px;
+  position: absolute;
+  border-radius: 10px;
+  border: none;
+  background-color: red;
+}
+.detail-main-img .detail-img-btn-left{
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.detail-main-img .detail-img-btn-right{
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.detail-sub-img{
+  display: flex;
+  gap: 25px;
+  width: 100%;
+  overflow-x: auto;
+}
+.detail-sub-img p{
+  min-width: 300px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 25px;
+}
+.detail-sub-img p img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+
+
+
+
+
+/* -------------- */
+
+.detail-dash-board{
+  max-width: 450px;
+  padding: 25px;
+  background-color: blue;
+  position: absolute;
+  right: 5%;
+  top: 20%;
+  transform: translateY(-50%);
+  margin-bottom: 25px;
+}
+
+.detail-dash-board .where-card-info{
+  background-color: red;
+}
+
+
+
+
+/* --------------- */
+
+
+.detail-place-info{
+  
+}
+.detail-place-info h4{
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+.detail-place-info ul{
+  letter-spacing: .5px;
+  color: #555;
+  line-height: 26px;
+}
+.detail-place-info ul li{}
+.detail-place-info ul li strong{}
+
+.detail-info,.location-info,.operation-info{
+  margin-bottom: 25px;
+}
+
+
+/* ----------------- */
+.detail-like{
+  text-align: center;
+  max-width: 1000px;
+}
+
+.detail-like button{
+  width: 150px;
+  padding: 20px 0;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  background-color: #a4dcde;
+  line-height: 25px;
+}
+.detail-like button p{
+  font-size: 1em;
+}
+.detail-like button p:first-child{
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.detail-like button p:last-child{
+  font-size: 1.5em;
+}
+
+
+.comment-box{
+  max-width: 1000px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top:2px solid #ccc;
+}
+
+.comment-header{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+.comment-header h4{
+  font-size: 1.5em;
+  margin-right: 10px;
+}
+.comment-header i{
+  font-size: 1.1em;
+}
+.comment-header span{
+  font-size: 1em;
+  letter-spacing: .5px;
+}
