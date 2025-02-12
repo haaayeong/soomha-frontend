@@ -1,0 +1,86 @@
+.login-state {
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+
+.login-state p {
+  font-size: 0.8em;
+  background-color: #ddd;
+  color: #999;
+  padding: 3px 14px;
+  border-radius: 10px;
+}
+
+.login-state .login-state-nickname {
+  color: #999;
+  cursor: pointer;
+}
+
+.login-state .login-state-nickname i {
+  margin-left: 5px;
+}
+
+.login-state .login-state-nickname:hover {
+  color: #333;
+}
+
+
+
+.user-info-box {
+  position: absolute;
+  left: 0;
+  top: 220%;
+  max-width: 0;
+  max-height: 0;
+  padding: 0;
+  opacity: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  border: 1px solid transparent;
+  background-color: transparent;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.user-info-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.user-info-content:nth-of-type(2) {
+  margin: 10px 0;
+}
+
+.user-info-content i {
+  color: #999;
+}
+
+.user-info-content span {
+  color: #999;
+}
+
+.user-info-content:hover i,.user-info-content:hover span{
+  color: #333;
+}
+
+
+
+.user-info-box.show {
+  max-width: 170px;
+  max-height: 200px;
+  padding: 20px 10px;
+  opacity: 1;
+  background-color: #fff;
+  border: 1px solid #ccc;
+
+}
+
+.login-state .fa-chevron-down {
+  transition: transform 0.3s ease;
+}
+
+.login-state .fa-chevron-down.open {
+  transform: rotate(180deg);
+}

@@ -1,0 +1,83 @@
+.main-quiz{
+  max-width: 1350px;
+  margin:auto;
+  margin-top:130px;
+}
+
+.main-quiz-box{
+  width: 100%;
+  background-color: #f1f1f1;
+  border-radius: 15px;
+  text-align: center;
+  padding: 100px 0;
+}
+.main-quiz-text{
+  padding-bottom: 30px;
+  font-size: 1.5em;
+}
+
+/* 부모 컨테이너 */
+.ox-box {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* O 박스 스타일 */
+.o-box,.x-box {
+  width: 200px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 4px solid #86c1e0;
+  border-radius: 10px;
+  transition: .5s;
+}
+
+.o-box:hover {
+  background-color: #86c1e0;
+}
+.o-box:hover p{
+  border: 10px solid #fff;
+}
+
+
+.o-box p {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 5px solid #86c1e0;
+  transition: .5s;
+
+}
+
+/* X 박스 스타일 */
+.x-box {
+  border: 4px solid #ef4d4d;
+}
+
+.x-box p {
+  position: absolute;
+  width: 80px;
+  height: 10px;
+  background-color: #ef4d4d;
+}
+
+.x-box:hover {
+  background-color: #ef4d4d;
+}
+.x-box:hover p{
+  background-color: #fff;
+}
+
+
+.x-box p:first-child {
+  transform: rotate(45deg);
+}
+
+.x-box p:last-child {
+  transform: rotate(-45deg);
+}
