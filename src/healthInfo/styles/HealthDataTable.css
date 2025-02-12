@@ -1,0 +1,104 @@
+
+
+/* 테이블 컨테이너와 전체 스크롤 설정 */
+.table-container {
+  width: 100%;         /* 부모 컨테이너의 너비는 100% */
+  overflow-x: auto;    /* 수평 스크롤 활성화 */
+  margin-bottom: 20px; /* 테이블과 다른 요소들 사이에 여백 */
+  display: block;      /* 테이블이 부모 컨테이너를 넘길 때 스크롤 활성화 */
+}
+
+/* 스크롤바 스타일링 */
+.table-container::-webkit-scrollbar {
+  height: 8px; /* 스크롤바 높이 */
+}
+
+.table-container::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* 스크롤바 경로 배경 색상 */
+  border-radius: 10px; /* 스크롤 경로의 모서리 둥글게 */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #888; /* 스크롤바의 색상 */
+  border-radius: 10px; /* 스크롤바 모서리 둥글게 */
+  border: 2px solid #f1f1f1; /* 스크롤바의 경계선 */
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* 마우스를 올렸을 때 스크롤바 색상 */
+}
+
+/* 테이블 */
+.health-data-table {
+  width: 100%;         /* 테이블의 너비는 100%로 설정 */
+  border-collapse: collapse;
+  table-layout: auto;  /* 테이블 셀들의 크기가 내용에 맞게 자동으로 설정 */
+}
+
+/* 테이블 헤더 스타일링 */
+.health-data-table thead {
+  background-color: #381460; /* 헤더 배경 색상 */
+}
+
+.health-data-table thead tr {
+  height: 40px;  /* 헤더 높이 */
+}
+
+.health-data-table thead tr th {
+  background-color: #381460;  /* 첫 번째 행 배경색 */
+  color: #fff;  /* 텍스트 색상 */
+  padding: 10px;
+  text-align: center;  /* 텍스트 가운데 정렬 */
+  font-weight: bold;
+  border: 1px solid #888888;  /* 셀 테두리 추가 */
+  min-width: 150px;  /* 최소 너비를 설정 */
+}
+
+/* 두 번째 헤더 행에 대한 배경색 */
+.health-data-table thead tr:nth-of-type(2) th {
+  background-color: #af8bb7;
+}
+
+/* tbody (본문 부분) */
+.health-data-table tbody {
+  font-size: 14px;  /* 본문 글자 크기 */
+}
+
+.health-data-table tbody tr {
+  border-bottom: 1px solid #ddd;  /* 각 행 사이에 경계선 추가 */
+}
+
+.health-data-table tbody tr td {
+  padding: 10px;
+  text-align: center;  /* 셀의 내용 중앙 정렬 */
+  vertical-align: middle;  /* 세로 중앙 정렬 */
+  border: 1px solid #ddd;  /* 셀 테두리 추가 */
+  color: #666;
+  min-width: 150px;  /* 최소 너비를 설정 */
+}
+
+/* 병합된 셀에 스타일 추가 */
+.health-data-table tbody tr td[rowspan],
+.health-data-table tbody tr td[colspan] {
+  background-color: #f9f2f7;  /* 병합된 셀 배경 색상 */
+  font-weight: bold;
+  padding: 20px 10px;
+  border: 1px solid #ddd;  /* 병합된 셀에도 테두리 추가 */
+}
+
+/* 특정 셀에 배경색 추가 (예: 테이블 셀에 색을 다르게 적용) */
+.health-data-table tbody tr td.table-white {
+  background-color: #fff;
+}
+
+/* 테이블 바디의 각 셀에 hover 효과 추가 */
+.health-data-table tbody tr td:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+/* 테이블 헤더의 셀에 hover 효과 추가 */
+.health-data-table thead tr th:hover {
+  background-color: #9a6b9b;
+  cursor: pointer;
+}

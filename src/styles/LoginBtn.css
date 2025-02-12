@@ -1,0 +1,11 @@
+.login-btn button{
+  padding: 5px 40px;
+  border-radius: 15px;
+  border: 2px solid #fff;
+  transition: .5s;  
+}
+
+.login-btn:hover button{
+  background-color: #fff;
+  border: 2px solid #989da5;
+}

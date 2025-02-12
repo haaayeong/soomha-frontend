@@ -1,0 +1,125 @@
+.comment{
+  background-color: #f1f1f1;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.comment-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment-top-left{
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.comment-top-left .user-thumb{
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.comment-top-left .user-thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.comment-top-left .best-label,.comment-top-left .role-level-label{
+  border-radius: 5px;
+  background-color: #ef4d4d;
+  color: #fff;
+  padding: 3px 10px;
+  font-size: .65em;
+}
+.comment-top-left .role-level-label{
+  background-color: #ffb808;
+}
+.comment-top-left .user-nickname{
+  margin: 0 15px;
+  color: #555;
+  font-size: 1em;
+}
+.comment-top-left .comment-date{
+  color: #555;
+  font-size: 0.8em;
+  margin-right: 10px;
+}
+.comment-top-left .comment-report{
+  width: 15px;
+}
+.comment-top-left .comment-report img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.comment-top-right{
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+}
+.comment-top-right i{
+  font-size: 1em;
+  color: #555;
+}
+
+.comment-text{
+  display: flex;
+  padding: 15px 0;
+  padding-left: 45px;
+  padding-right: 25px;
+  justify-content: space-between;
+  min-height: 100px;
+  gap: 25px;
+  width: 100%;  /* 부모 안에서 너비 제한 */
+  word-wrap: break-word; /* 긴 단어가 부모 너비를 벗어나지 않도록 줄 바꿈 */
+  word-break: break-word; /* 긴 단어가 넘칠 경우 강제 줄 바꿈 */
+  overflow-wrap: break-word; /* 최신 브라우저 지원을 위한 속성 */
+  white-space: pre-wrap; /* 줄바꿈과 공백을 유지하면서 줄바꿈 처리 */
+}
+.comment-text > span{
+  font-size: 1em;
+}
+.comment-text button{
+  padding: 5px;
+  min-width: 100px;
+  height: 35px;
+  align-self: flex-end;
+  background-color: #ef4d4d;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+}
+.comment-text button span{
+  color: #fff;
+  margin: 0 3px;
+  font-size: 1em;
+}
+
+
+.comment-input{
+  background-color: #fff;
+  border: 2px solid #ccc;
+}
+.comments{
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 2px solid #ccc;
+}
+
+.comment-input .comment-text button{
+  background-color: #666;
+  color: #fff;
+  font-size: 1em;
+}
+.comment-input .comment-text textarea{
+  padding: 10px;
+}
+.comment-input .comment-text textarea::placeholder {
+  color: #ccc; /* 원하는 색상으로 변경 */
+  opacity: 1;  /* 일부 브라우저에서 흐리게 보이는 경우 불투명하게 설정 */
+}

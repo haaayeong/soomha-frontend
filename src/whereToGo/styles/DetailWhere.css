@@ -1,0 +1,410 @@
+.detail-where {
+  margin-top: 25px;
+  padding: 0 15px;
+  width: 100%;
+  position: relative;
+}
+
+.detail-back {
+  margin-bottom: 15px;
+  background-color: #eee;
+  padding: 5px 10px;
+  width: 150px;
+  color: #333;
+  /* 텍스트 색상 */
+  border: 1px solid #ddd;
+  /* 테두리 */
+  cursor: pointer;
+  /* 마우스를 올렸을 때 포인터로 변경 */
+  transition: background-color 0.3s, border-color 0.3s;
+  /* 배경색, 테두리 색상 변화 애니메이션 */
+  border-radius: 5px;
+}
+
+.detail-back i {
+  margin-right: 8px;
+  /* 아이콘과 텍스트 사이의 간격 */
+  font-size: 15px;
+  /* 아이콘 크기 */
+}
+
+.detail-back:hover {
+  background-color: #333;
+  /* 호버 시 배경색 */
+  border-color: #bbb;
+  /* 호버 시 테두리 색상 */
+  color: #fff;
+}
+
+.detail-back:active {
+  background-color: #ccc;
+  /* 클릭 시 배경색 */
+}
+
+
+.detail-img-box {
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.detail-main-img {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.detail-main-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.detail-main-img button {
+  width: 55px;
+  height: 100px;
+  position: absolute;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  opacity: 0;
+  transition: .5s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+}
+
+.detail-main-img button i {
+  font-size: 1.5em;
+}
+
+
+
+.detail-main-img .detail-img-btn-left {
+  left: -50%;
+  top: 50%;
+  transform: translateY(-50%);
+
+}
+
+.detail-main-img .detail-img-btn-right {
+  right: -50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.detail-main-img:hover .detail-img-btn-left {
+  left: 5%;
+  opacity: 1;
+}
+
+.detail-main-img:hover .detail-img-btn-right {
+  right: 5%;
+  opacity: 1;
+}
+
+.detail-main-img button:hover {
+  color: #333;
+  background-color: #f1f1f1;
+  border: 1px solid #eee;
+}
+
+
+
+.detail-sub-img {
+  display: flex;
+  gap: 25px;
+  width: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.detail-sub-img::-webkit-scrollbar {
+  height: 8px;
+}
+
+.detail-sub-img::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+.detail-sub-img::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
+}
+
+.detail-sub-img::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+}
+
+.detail-sub-img p {
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 200px;
+  max-height: 200px;
+  overflow: hidden;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.detail-sub-img p img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .7;
+}
+
+.detail-sub-img p.active img {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+/* -------------- */
+
+.detail-dash-board {
+  padding: 25px;
+  position: fixed;
+  right: 50%;
+  top: 50%;
+  transform: translate(200%, -50%) scale(1.3);
+  margin-bottom: 25px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.detail-dash-board .where-card-info {
+  background-color: #fff;
+}
+
+
+
+/* --------------- */
+
+
+.detail-place-info {}
+
+.detail-place-info h4 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.detail-place-info ul {
+  letter-spacing: .5px;
+  color: #555;
+  line-height: 26px;
+}
+
+.detail-place-info ul li {
+  overflow: hidden;
+}
+
+.detail-place-info ul li strong {}
+
+#detail-map {
+  width: 1000px;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+
+.detail-info,
+.location-info,
+.operation-info {
+  margin-bottom: 25px;
+}
+
+
+
+
+
+/* ----------------- */
+.detail-like {
+  text-align: center;
+  max-width: 1000px;
+}
+
+.detail-like button {
+  width: 150px;
+  padding: 20px 0;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  background-color: #a4dcde;
+  line-height: 25px;
+}
+
+.detail-like button p {
+  font-size: 1em;
+}
+
+.detail-like button p:first-child {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.detail-like button p:last-child {
+  font-size: 1.5em;
+}
+
+
+.comment-box {
+  max-width: 1000px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid #ccc;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.comment-header h4 {
+  font-size: 1.5em;
+  margin-right: 10px;
+}
+
+.comment-header i {
+  font-size: 1.1em;
+}
+
+.comment-header span {
+  font-size: 1em;
+  letter-spacing: .5px;
+}
+
+
+/* 미디어 */
+
+@media (max-width:1600px) {
+  .detail-dash-board {
+    position: static;
+    transform: translateY(0) scale(1);
+    width: 1000px;
+    padding: 0;
+    padding-bottom: 20px;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #ccc;
+
+  }
+
+  .detail-dash-board .where-card-info .card-weather-box {
+    grid-template-columns: repeat(4, auto);
+  }
+
+}
+
+
+
+@media (max-width:1300px) {
+
+  .detail-img-box,
+  .detail-like,
+  .comment-box {
+    width: 100%;
+  }
+  .comment-box,.detail-like {
+    max-width: 100%;
+  }
+
+  #detail-map {
+    width: 100%;
+    min-height: 300px;
+  }
+
+    
+
+}
+
+@media (max-width:700px) {
+  .detail-main-img {
+    height: 400px;
+  }
+
+  .detail-dash-board {
+    width: auto;
+  }
+
+  .detail-dash-board .where-card-info .card-weather-box {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .comment-top-left{
+    font-size: .9em;
+  }
+  .comment-top-left .user-thumb{
+    width: 30px;
+    height: 30px;
+  }
+  .comment-top-left .user-nickname{
+    margin: 0 5px;
+  }
+
+  .comment-text > span,.comment-input .comment-text textarea{
+    font-size: 0.9em;
+  }
+  .comment-text button,.comment-input .comment-text button{
+    min-width: 70px;
+    font-size: 0.8em;
+  }
+
+}
+
+@media (max-width:500px) {
+  .detail-sub-img p {
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 100px;
+    max-height: 150px;
+  }
+
+  .detail-like button {
+    width: 100px;
+    padding: 10px 0;
+    font-size: .9em;
+  }
+
+  .detail-like button i {
+    font-size: .9em;
+  }
+
+  .comment-top-left{
+    font-size: .7em;
+  }
+  .comment-top-left .user-thumb{
+    width: 20px;
+    height: 20px;
+  }
+  .comment-top-left .best-label, .comment-top-left .role-level-label{
+    padding: 2px 6px;
+  }
+  .comment-text button,.comment-input .comment-text button{
+    min-width: 50px;
+    font-size: 0.7em;
+    padding: 2px;
+  }
+  .comment-text{
+    padding-left:10px;
+    padding-right: 5px;
+  }
+}

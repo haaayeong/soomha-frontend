@@ -144,7 +144,7 @@ function Signup() {
             name="nickname"
             placeholder="닉네임 입력"
             value={nickname}
-            onChange={handleChange(setNickname, isValid)}
+            onChange={handleChange(setNickname, isValidNickname, setNicknameError)}
             required
             />
           </div>

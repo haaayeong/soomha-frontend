@@ -1,0 +1,189 @@
+
+@media (max-width:1600px) {
+  .main-visual{
+    max-width: 95%;
+  }
+  .main-good-place,.main-all-place,.dust-board,.main-health,.main-quiz{
+    max-width: 85%;
+  }
+}
+
+
+@media (max-width:900px){
+  .main-visual figure p{
+    border-radius: 15px;
+  }
+  .main-visual figure figcaption{
+    font-size: 1em;
+  }
+  .place-card{
+    width: 300px;
+  }
+  .main-place-top h2{
+    font-size: 1.2em;
+    letter-spacing: 0;
+  }
+  .main-weather-box .weather-box{
+    font-size: 0.8em;
+  }
+  .main-weather-box .temp-box{
+    font-size: 0.8em;
+  }
+  .main-comment-box span,.main-like-box span{
+    font-size: .8em;
+  }
+  .dust-text-box{
+    font-size: 0.85em;
+    width: 55%;
+  }
+  .dust-icon-box{
+
+  }
+  .dust-icon-box p:first-child{
+    font-size: 8px;
+  }
+  .dust-icon-box p:last-child i{
+    font-size: 1.5em;
+  }
+  .dust-board-nav-box{
+    width: 300px;
+  }
+  .dust-board-nav-box h2{
+    font-size: 1.2em;
+  }
+  .dust-board-nav-box button{
+    padding: 7px 40px;
+    border-radius: 5px;
+    font-size: 0.9em;
+  }
+
+  
+  .main-health-content{
+    padding: 60px 0 50px 0
+  }
+  .main-health-text-box{
+    font-size: 0.8em;
+  }
+  .main-health-count-box{
+    gap: 10px;
+  }
+  .main-health-count-box div{
+    margin: 20px 0 40px 0;
+    font-size: 0.9em;
+  }
+  .main-health-count-box div p:first-child{
+    font-size: 1.0em;
+  }
+  .main-health-count-box div p:last-child{
+    padding: 15px 40px;
+    font-size: 1.5em;
+  }
+  .main-health-warning{
+    font-size: 1em;
+  }
+
+
+  .main-quiz{
+    margin-top: 75px;
+  }
+  .main-quiz-box{
+    padding: 60px 0;
+  }
+  .main-quiz-text{
+    font-size: 1.2em;
+  }
+  .o-box,.x-box {
+    width: 150px;
+    height: 90px;
+  }
+  .o-box p {
+    width: 50px;
+    height: 50px;
+  }
+  .o-box:hover p{
+    border: 5px solid #fff;
+  }
+  .x-box p {
+    width: 50px;
+    height: 7px;
+  }
+  
+
+
+}
+@media (max-width:700px) {
+  .main-health-text-box{
+    width: 90%;
+    margin: auto;
+    font-size: 0.6em;
+  }
+}
+
+@media (max-width:600px) {
+
+  .main-visual figure figcaption{
+    font-size: .7em;
+  }
+  .main-place-top p{
+    width: 50px;
+  }
+  .main-place-top p::after{
+    display: none;
+  }
+  .dust-board-nav-box{
+    width: 250px;
+  }
+
+  .main-health-content{
+    padding: 45px 0 35px 0
+  }
+  .main-health-text-box{
+    font-size: 0.5em;
+    line-height: 1.7;
+  }
+  .br{
+    display: block;
+  }
+
+  .main-health-count-box div{
+    margin: 10px 0 20px 0;
+    font-size: 0.5em;
+  }
+  .main-health-count-box div p:first-child{
+    padding-top: 7px;
+  }
+  .main-health-count-box div p:last-child{
+    padding: 7px 20px;
+  }
+  .main-health-warning{
+    font-size: .7em;
+  }
+
+
+
+  .main-quiz{
+    margin-top: 45px;
+  }
+  .main-quiz-box{
+    padding: 30px 0;
+  }
+  .main-quiz-text{
+    font-size: .8em;
+    padding-bottom:15px;
+  }
+  .o-box,.x-box {
+    width: 100px;
+    height: 70px;
+  }
+  .o-box p {
+    width: 30px;
+    height: 30px;
+  }
+  .o-box:hover p{
+    border: 5px solid #fff;
+  }
+  .x-box p {
+    width: 30px;
+    height: 5px;
+  }
+}

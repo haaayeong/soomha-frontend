@@ -1,0 +1,31 @@
+.mobile-state{}
+.sidebar-user-info{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.sidebar-user-info p{
+  font-size: 0.7em;
+  background-color: #ccc;
+  padding: 2px 12px;
+  border-radius: 5px;
+  color: #666;
+}
+.sidebar-user-info div{
+  color: #666;
+}
+
+
+.mobile-state-box{
+}
+.mobile-state-box .mobile-state-content{
+  gap: 20px;
+}
+.mobile-state-box .mobile-state-content:nth-of-type(2){
+  margin: 20px 0;
+}
+.mobile-state-box .mobile-state-content:nth-of-type(3){
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
