@@ -20,7 +20,7 @@ function EmailInput({ setEmail, setEmailCode }) {
   // 이메일 유효성 검사
   const handleEmailBlur = () => {
     const fullmail = `${localPart}@${isCustom ? customDomain : domain}`;
-    setEmailError(isValidEmail(fullemail));
+    setEmailError(isValidEmail(fullmail));
   }
 
   return(

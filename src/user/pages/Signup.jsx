@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { isValidUsername, isValidPassword, isValidPasswordMatch } from "../util/validation";
+import { isValidUsername, isValidPassword, isValidPasswordMatch, isValidNickname } from "../util/validation";
 import EmailInput from "../components/EmailInput";
 import RegionSelect from "../components/RegionSelect";
 import '../style/Signup.css'
@@ -22,13 +22,16 @@ function Signup() {
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const [nicknameError, setNicknameError] = useState("");
 
   const navigate = useNavigate();
 
   // 입력값이 변경될 때 유효성 검사 실행
-  const handleUsernameBlur = () => setUsernameError(isValidUsername(username));
-  const handlePasswordBlur = () => setPasswordError(isValidPassword(password));
-  const handleConfirmPasswordBlur = () => setConfirmPasswordError(isValidPasswordMatch(password, confirmPassword));
+  const handleChange = (setter, validator, setError) => (e) => {
+    const value = e.target.value;
+    setter(value);
+    setError(validator(value));
+  }
 
   // 가입 유형이 바뀔 때마다 세팅.
   const handleRolechange = (e) => {
@@ -40,17 +43,6 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-    // 모든 필드 검사 실행
-    setUsernameError(validateUsername(username));
-    setPasswordError(validatePassword(password));
-    setConfirmPasswordError(validatePasswordMatch(password, confirmPassword));
-    setEmailError(validateEmail(email));
-
-    // 에러가 있는 경우 회원가입 진행 X
-    if (usernameError || passwordError || confirmPasswordError || emailError) {
-      return;
-    }
 
     const userData = {
       username,
@@ -75,11 +67,21 @@ function Signup() {
       });
 
       const result = await response.json();
+
       if(response.ok) {
         alert(result.message);
         navigate("/login")
       } else {
-        alert(result.error || "회원가입에 실패했습니다.");
+        if (Array.isArray(result.error)){
+          result.error.forEach((err) => {
+            if (err.includes("username")) setUsernameError(err);
+            if (err.includes("password")) setPasswordError(err);
+            if (err.includes("confirmPassword")) setConfirmPassword(err);
+            if (err.includes("nickname")) setNicknameError(err);
+          });
+        } else {
+          setError(result.error || "회원가입에 실패했습니다.");
+        }
       }
     } catch(error) {
       console.error("Error : ", error);
@@ -101,13 +103,12 @@ function Signup() {
             name="username"
             placeholder="아이디 입력(4~20자)"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            onBlur={handleUsernameBlur}
+            onChange={handleChange(setUsername, isValidUsername, setUsernameError)}
             required
             />
-            {usernameError && <p className="error">{usernameError}</p>}
             <button id="id-check">중복 확인</button>
             </div>
+            {usernameError && <p className="error">{usernameError}</p>}
           </div>
 
           <div id="password">
@@ -117,8 +118,7 @@ function Signup() {
             name="password"
             placeholder="비밀번호 입력(소문자, 숫자, 특수문자 포함 4~20자)"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            onBlur={handlePasswordBlur}
+            onChange={handleChange(setPassword, isValidPassword, setPasswordError)}
             required
             />
             {passwordError && <p className="error">{passwordError}</p>}
@@ -131,8 +131,7 @@ function Signup() {
             name="confirmPassword" 
             placeholder="비밀번호 재입력"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            onBlur={handleConfirmPasswordBlur}
+            onChange={handleChange(setConfirmPassword, isValidPasswordMatch, setConfirmPasswordError)}
             required
             />
             {confirmPasswordError && <p className="error">{confirmPasswordError}</p>}
@@ -145,7 +144,7 @@ function Signup() {
             name="nickname"
             placeholder="닉네임 입력"
             value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
+            onChange={handleChange(setNickname, isValid)}
             required
             />
           </div>

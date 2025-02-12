@@ -34,3 +34,12 @@ export const isValidEmail = (email) => {
   
   return "";
 };
+
+// 닉네임 유효성 검사
+export const isValidNickname = (nickname) => {
+  const regex = /^[A-Za-z가-힣]{2,}$/
+
+  if (nickname === '') return "닉네임을 입력하세요.";
+
+  return "";
+}
