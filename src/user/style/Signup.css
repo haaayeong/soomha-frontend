@@ -110,6 +110,11 @@
   font-size: 14px;
 }
 
+.Signup .valid {
+  color: green;
+  font-size: 14px;
+}
+
 .RegionSelect select {
   max-width: 45%;
   margin-right: 5%;

@@ -37,9 +37,10 @@ export const isValidEmail = (email) => {
 
 // 닉네임 유효성 검사
 export const isValidNickname = (nickname) => {
-  const regex = /^[A-Za-z가-힣]{2,}$/
+  const regex = /^[A-Za-z가-힣0-9]{2,}$/
 
   if (nickname === '') return "닉네임을 입력하세요.";
+  if (!regex.test(nickname)) return "닉네임은 2자 이상, 특수기호는 제외해야 합니다."
 
   return "";
 }

@@ -14,6 +14,8 @@ function Signup() {
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [emailCode, setEmailCode] = useState("");
+  const [emailValid, setEmailValid] = useState(false); // 이메일 유효성
+  const [emailAvailable, setEmailAvailable] = useState(null); // 이메일 중복 여부
   const [area, setArea] = useState("");
   const [role, setRole] = useState(""); // 가입 유형 상태 저장
   const [kindergarten, setKindergarten] = useState("");
@@ -28,12 +30,72 @@ function Signup() {
 
   const navigate = useNavigate();
 
-  // 입력값이 변경될 때 유효성 검사 실행
+  // 아이디 중복 확인
+  const handleUsernameCheck = async () => {
+
+    // 먼저 유효성 검사 확인
+    const validationMessage = isValidUsername(username);
+    if (validationMessage) {
+      setUsernameError(validationMessage);  // 유효성 검사에서 오류가 있다면 바로 반환
+      return;
+    }
+  
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/crud/check-username?username=${username}`);
+      const result = await response.json();
+  
+      if (response.ok) {
+        setUsernameError("사용 가능한 아이디입니다.");
+      } else {
+        setUsernameError(result.error || "아이디 중복 확인 실패");
+      }
+    } catch (error) {
+      console.error("Error : ", error);
+      setUsernameError("아이디 중복 확인 중 오류가 발생했습니다.");
+    }
+  };
+
+  // 닉네임 검사
+  const handleNicknameChange = async (e) => {
+    const nicknameValue = e.target.value;
+    setNickname(nicknameValue);
+
+    // 유효성 검사
+    const validationMessage = isValidNickname(nicknameValue);
+    setNicknameError(validationMessage);
+
+    // 닉네임 중복 검사
+    if (nicknameValue && !validationMessage) {
+      try {
+        const response = await fetch(`http://127.0.0.1:5000/crud/check-nickname?nickname=${nicknameValue}`);
+        const result = await response.json();
+
+        if(response.ok) {
+          setNicknameError("사용 가능한 닉네임입니다.");
+        } else {
+          setNicknameError(result.error || "닉네임 중복 확인 실패");
+        }
+      } catch (error) {
+        console.error("Error : ", error);
+        setNicknameError("닉네임 중복 확인 중 오류가 발생했습니다.");
+      }
+    }
+  }
+
+  // 비밀번호 확인 필드의 변경 시 유효성 검사 안함
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+    setConfirmPasswordError(""); // 에러 메시지 초기화 (확인할 때만 표시)
+  };
+
+  // 입력값이 변경될 때 유효성 검사 실행(닉네임 제외)
   const handleChange = (setter, validator, setError) => (e) => {
     const value = e.target.value;
     setter(value);
     setError(validator(value));
   }
+
+  
 
   // 가입 유형이 바뀔 때마다 세팅.
   const handleRolechange = (e) => {
@@ -41,10 +103,25 @@ function Signup() {
   };
 
 
-
+  // 회원가입 처리
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    // 비밀번호와 비밀번호 확인 값 출력
+    console.log("Password: ", password);
+    console.log("Confirm Password: ", confirmPassword); 
+    
+    if (password.trim() !== confirmPassword.trim()) {
+      setConfirmPasswordError("비밀번호가 일치하지 않습니다.");
+      setLoading(false);
+      return;
+    }
+
+    if(!emailValid || !emailAvailable) {
+      alert("유효한 이메일을 입력하세요.");
+      return;
+    }
 
     const userData = {
       username,
@@ -60,7 +137,7 @@ function Signup() {
     };
 
     try {
-      const response = await fetch('/crud/signup', {
+      const response = await fetch('http://127.0.0.1:5000/crud/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -110,9 +187,9 @@ function Signup() {
               onChange={handleChange(setUsername, isValidUsername, setUsernameError)}
               required
               />
-              <button id="id-check">중복 확인</button>
+              <button id="id-check" onClick={handleUsernameCheck}>중복 확인</button>
               </div>
-              {usernameError && <p className="error">{usernameError}</p>}
+              {usernameError && <p className={usernameError.includes("사용 가능한") ? "valid" : "error"}>{usernameError}</p>}
             </div>
 
             <div id="password">
@@ -135,7 +212,7 @@ function Signup() {
               name="confirmPassword" 
               placeholder="비밀번호 재입력"
               value={confirmPassword}
-              onChange={handleChange(setConfirmPassword, isValidPasswordMatch, setConfirmPasswordError)}
+              onChange={handleConfirmPasswordChange}
               required
               />
               {confirmPasswordError && <p className="error">{confirmPasswordError}</p>}
@@ -148,12 +225,13 @@ function Signup() {
               name="nickname"
               placeholder="닉네임 입력"
               value={nickname}
-              onChange={handleChange(setNickname, isValidNickname, setNicknameError)}
+              onChange={handleNicknameChange}
               required
               />
+              {nicknameError && <p className={nicknameError.includes("사용 가능한") ? "valid" : "error"}>{nicknameError}</p>}
             </div>
 
-            <EmailInput setEmail={setEmail} setEmailcode={setEmailCode} />
+            <EmailInput setEmail={setEmail} setEmailcode={setEmailCode} setEmailValid={setEmailValid} setEmailAvailable={setEmailAvailable}/>
 
             <div id="role">
               <p>가입 유형</p>

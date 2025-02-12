@@ -1,15 +1,16 @@
-import { useState } from "react";
-import { isValidEmail } from "../util/validation";
+import { useState, useEffect } from "react";
+import { isValidEmail } from "../util/validation"; // 이메일 유효성 검사 함수
 import '../style/Signup.css';
 
-function EmailInput({ setEmail, setEmailCode }) {
-  const [ localPart, setLocalPart ] = useState(""); // 이메일의 아이디 부분 저장
-  const [ domain, setDomain ] = useState(""); // 선택한 도메인
-  const [ customDomain, setCustomDomain ] = useState(""); // 사용자가 직접 입력한 도메인
-  const [ isCustom, setIsCustom ] = useState(false); // "직접 입력" 선택 여부
-  const [ emailError, setEmailError ] = useState("");
-  const [ emailCode, setLocalEmailCode ] = useState("");
-  const [ message, setMessage ] = useState(""); // 상태 메세지
+function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }) {
+  const [localPart, setLocalPart] = useState(""); // 이메일 아이디 부분
+  const [domain, setDomain] = useState(""); // 이메일 도메인
+  const [customDomain, setCustomDomain] = useState(""); // 사용자가 입력한 도메인
+  const [isCustom, setIsCustom] = useState(false); // "직접 입력" 선택 여부
+  const [emailError, setEmailError] = useState(""); // 이메일 유효성 검사
+  const [emailCode, setLocalEmailCode] = useState(""); // 인증 코드 상태
+  const [message, setMessage] = useState(""); // 상태 메시지
+  const [isEmailAvailable, setIsEmailAvailable] = useState(null); // 이메일 중복 여부 상태
 
   // 이메일 주소 업데이트 함수
   const handleEmailChange = () => {
@@ -17,38 +18,94 @@ function EmailInput({ setEmail, setEmailCode }) {
     setEmail(fullEmail);
   };
 
-  // 이메일 유효성 검사
-  const handleEmailBlur = () => {
-    const fullmail = `${localPart}@${isCustom ? customDomain : domain}`;
-    setEmailError(isValidEmail(fullmail));
-  }
+  // 이메일 유효성 검사 및 중복 확인
+  const checkEmail = async () => {
+    const fullEmail = `${localPart}@${isCustom ? customDomain : domain}`;
 
-  return(
+    // 이메일이 유효하지 않으면 중복 확인하지 않음
+    if (!isValidEmail(fullEmail)) {
+      setEmailError("유효한 이메일을 입력해주세요.");
+      setIsEmailAvailable(null); // 중복 여부 초기화
+      setMessage("");
+      setEmailValid(false);
+      return;
+    }
+
+    // 이메일 유효성 검사 통과 후 중복 확인
+    setEmailError("");
+    setEmailValid(true); // 유효성 검사 통과시 부모 컴포넌트로 전달
+
+    try {
+      // 이메일 중복 확인 API 호출
+      const response = await fetch(`http://127.0.0.1:5000/crud/check-email?email=${fullEmail}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`서버 오류: ${response.status}`)
+      }
+
+      const result = await response.json();
+      console.log("Email check result:", result);
+
+      if (result.isAvailable) {
+        setIsEmailAvailable(true);
+        setMessage("사용 가능한 이메일입니다.");
+        setEmailAvailable(true); // 중복 확인 후 사용 가능한 상태 부모 컴포넌트로 전달
+      } else {
+        setIsEmailAvailable(false);
+        setMessage("이미 사용 중인 이메일입니다.");
+        setEmailAvailable(false); // 이미 사용 중인 이메일 상태 부모 컴포넌트로 전달
+      }
+    } catch (error) {
+      console.error("Error checking email:", error);
+      setMessage("이메일 중복 확인 중 오류가 발생했습니다.");
+    }
+  };
+
+  // 이메일 입력 변경 시마다 유효성 검사와 중복 확인 수행
+  useEffect(() => {
+    // 과도한 API 요청을 해결하기 위함.
+    const timer = setTimeout(() => {
+      if (localPart && (isCustom ? customDomain : domain)) {
+        checkEmail();
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [localPart, domain, customDomain, isCustom]);
+
+  return (
     <div className="EmailInput">
       <div id="Email">
         <p>이메일</p>
         <div className="input-container">
           <input
-          type="text"
-          value={localPart}
-          onChange={(e) => {
-            setLocalPart(e.target.value);
-            handleEmailChange();
-          }}
-          onBlur={handleEmailBlur}
-          placeholder="이메일 아이디"
-          id="email-id"
-          required
+            type="text"
+            value={localPart}
+            onChange={(e) => {
+              setLocalPart(e.target.value);
+              handleEmailChange();
+            }}
+            placeholder="이메일 아이디"
+            id="email-id"
+            required
           />
           @
           <input
             type="text"
-            value={domain}
+            value={isCustom ? customDomain : domain}
             onChange={(e) => {
-              setDomain(e.target.value);
+              if (isCustom) {
+                setDomain(e.target.value);
+              } else {
+                setDomain(e.target.value);
+              }
               handleEmailChange();
             }}
-            onBlur={handleEmailBlur}
             required
             disabled={!isCustom} // 직접 입력을 선택하면 활성화, 아니면 비활성화
           />
@@ -67,25 +124,29 @@ function EmailInput({ setEmail, setEmailCode }) {
             <option value="daum.net">daum.net</option>
             <option value="custom">직접 입력</option>
           </select>
-          
         </div>
-          {emailError && <p className="error">{emailError}</p>}
-          <button>인증메일 발송</button>
+        
+        {/* 유효성 검사 및 중복 확인 메시지 표시 */}
+        {emailError && <p className="error">{emailError}</p>}
+        {message && (
+          <p className={isEmailAvailable ? "valid" : "error"}>{message}</p>
+        )}
+        <button>인증메일 발송</button>
       </div>
       <div>
         <input
-        type="text"
-        placeholder="인증번호 입력"
-        value={emailCode}
-        onChange={(e) => {
-          setLocalEmailCode(e.target.value);
-          setEmailCode(e.target.value);
-        }}
+          type="text"
+          placeholder="인증번호 입력"
+          value={emailCode}
+          onChange={(e) => {
+            setLocalEmailCode(e.target.value);
+            setEmailCode(e.target.value);
+          }}
         />
         <button id="check">확인</button>
       </div>
     </div>
-  )
+  );
 }
 
 export default EmailInput;
