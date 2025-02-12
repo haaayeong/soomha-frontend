@@ -1,6 +1,5 @@
 import WhereCardInfo from './WhereCardInfo';
 
-import '../styles/WhereCard.css'
 
 function WhereCard({isNextWeek}) {
   return (
