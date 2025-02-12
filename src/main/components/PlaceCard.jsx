@@ -1,8 +1,9 @@
 import '../styles/PlaceCard.css'
 
-function PlaceCard({bool}){
+function PlaceCard({bool,pageHandler}){
   return(
-    <div className="place-card">
+    // 나중에 pageHandler 각 장소의 아이디로 변경
+    <div className="place-card" onClick={()=>pageHandler('/whereToGo/1')}>
       <div className="place-card-img-box">
         <img src="/images/thumb.jpg" alt="장소이미지" />
       </div>

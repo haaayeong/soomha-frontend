@@ -12,18 +12,23 @@ import Footer from '../../components/Footer';
 
 import '../styles/Home.css'
 import '../styles/Main-media.css'
+import { useNavigate } from 'react-router-dom';
 
 
 function Home(){
+  const navigate = useNavigate();
+  const pageHandler = (path) =>{
+    navigate(path)
+  }
   return(
     <main>
       <Header/>
       <MainVisual/>
-      <MainGoodPlace/>
-      <MainAllPlace/>
-      <DustBoard/>
-      <MainHealth/>
-      <MainQuiz/>
+      <MainGoodPlace pageHandler={pageHandler}/>
+      <MainAllPlace pageHandler={pageHandler}/>
+      <DustBoard pageHandler={pageHandler}/>
+      <MainHealth pageHandler={pageHandler}/>
+      <MainQuiz pageHandler={pageHandler}/>
       <Footer/>
     </main>
   )

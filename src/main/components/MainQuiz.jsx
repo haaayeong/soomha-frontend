@@ -1,11 +1,11 @@
 import '../styles/MainQuiz.css'
 
-function MainQuiz(){
+function MainQuiz({pageHandler}){
   return(
     <section className="main-quiz">
       <div className="main-place-top main-quiz-top">
         <h2>오늘의 퀴즈</h2>
-        <p></p>
+        <p onClick={()=>pageHandler('/quiz')}></p>
       </div>
       <article className="main-quiz-box">
         <div className='main-quiz-text'>지름이 2.5㎛ 이하의 먼지를 미세먼지라고 한다.</div>

@@ -5,10 +5,11 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import SubNav from "../../components/SubNav";
 
-
 import '../styles/WhereToGo.css'
 import '../styles/WhereCard.css'
 import '../styles/WhereMedia.css'
+
+
 
 
 function WhereToGo() {

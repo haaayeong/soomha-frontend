@@ -3,7 +3,7 @@ import { handleHorizontalScroll } from "../../utils/wheelUtil";
 import '../styles/MainAllPlace.css'
 import PlaceCard from "./PlaceCard";
 
-function MainAllPlace(){
+function MainAllPlace({pageHandler}){
   const bool = true;
   const mainPlaceCardsRef = useRef(null);
 
@@ -26,11 +26,11 @@ function MainAllPlace(){
     <section className="main-all-place">
       <div className="main-place-top">
         <h2>자녀와 함께놀기</h2>
-        <p></p>
+        <p onClick={()=>pageHandler('/whereToGo')}></p>
       </div>
       <article className="main-place-cards" ref={mainPlaceCardsRef}>
         {[...Array(5)].map((_, index) => (
-            <PlaceCard key={index} bool={bool} />
+            <PlaceCard key={index} bool={bool} pageHandler={pageHandler} />
           ))}
       </article>
     </section>
