@@ -5,7 +5,7 @@ import LoginBtn from './LoginBtn';
 import MobileState from './MobileState';
 
 
-function MobileNav() {
+function MobileNav({handleNavigation}) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -30,14 +30,14 @@ function MobileNav() {
           {/* <MobileState/> */}
         </div>
         <div className="mobile-nav-tab">
-          <div className="user-info-content mobile-nav-content">
+          <div className="user-info-content mobile-nav-content" onClick={()=>{handleNavigation('/whereToGo')}}>
             <i className="fa-solid fa-location-dot"></i>
             <span>어디갈까?</span>
           </div>
-          <div className="user-info-content mobile-nav-content">
+          <div className="user-info-content mobile-nav-content" onClick={()=>{handleNavigation('/quiz')}}>
             <i className="fa-solid fa-q"></i>
             <span>퀴즈</span></div>
-          <div className="user-info-content mobile-nav-content">
+          <div className="user-info-content mobile-nav-content" onClick={()=>{handleNavigation('/healthInfo')}}>
             <i className="fa-solid fa-person-running"></i>
             <span>건강정보</span>
           </div>
