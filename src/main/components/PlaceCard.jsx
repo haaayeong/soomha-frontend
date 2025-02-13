@@ -1,25 +1,7 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import '../styles/PlaceCard.css'
 
-function PlaceCard({bool,pageHandler}){
-  const [place, setPlace] = useState(null);
+function PlaceCard({bool,pageHandler, place}){
 
-   // 랜덤 장소 정보를 가져오는 함수
-   const fetchRandomPlace = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/api/place-card');
-      console.log('랜덤 시설 정보:', response.data);
-      setPlace(response.data);  // 받은 데이터를 상태에 저장
-    } catch (error) {
-      console.error('에러 발생:', error);
-    }
-  };
-
-  // 컴포넌트가 마운트되었을 때 한 번만 호출
-  useEffect(() => {
-    fetchRandomPlace();
-  }, []);  // 빈 배열을 넣으면 컴포넌트가 처음 렌더링될 때만 실행됨
 
   // 아직 데이터를 받지 못한 상태일 때 로딩 표시
   if (!place) {

@@ -3,7 +3,7 @@ import PlaceCard from "./PlaceCard";
 import { handleHorizontalScroll } from "../../utils/wheelUtil";
 import '../styles/MainGoodPlace.css'
 
-function MainGoodPlace({pageHandler}){
+function MainGoodPlace({pageHandler, places }){
   const mainPlaceCardsRef = useRef(null);
 
   useEffect(() => {
@@ -28,8 +28,8 @@ function MainGoodPlace({pageHandler}){
         <p onClick={()=>pageHandler('/whereToGo')}></p>
       </div>
       <article className="main-place-cards" ref={mainPlaceCardsRef}>
-        {[...Array(5)].map((_, index) => (
-            <PlaceCard key={index} pageHandler={pageHandler} />
+        {places.map((place, index) => (
+            <PlaceCard key={index} pageHandler={pageHandler} place={place}/>
           ))}
       </article>
     </section>
