@@ -8,7 +8,7 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
   const [customDomain, setCustomDomain] = useState(""); // 사용자가 입력한 도메인
   const [isCustom, setIsCustom] = useState(false); // "직접 입력" 선택 여부
   const [emailError, setEmailError] = useState(""); // 이메일 유효성 검사
-  const [emailCode, setLocalEmailCode] = useState(""); // 인증 코드 상태
+  const [emailCode, setLocalEmailCode] = useState(""); // 인증 코드 상태를 관리
   const [message, setMessage] = useState(""); // 상태 메시지
   const [isEmailAvailable, setIsEmailAvailable] = useState(null); // 이메일 중복 여부 상태
 
@@ -30,7 +30,6 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
       setEmailValid(false);
       return;
     }
-
 
     // 이메일 유효성 검사 통과 후 중복 확인
     setEmailError("");
@@ -64,7 +63,61 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
       setMessage("이메일 중복 확인 중 오류가 발생했습니다.");
     }
   };
-  
+
+  // 인증메일 발송
+  const sendEmailVerification = async () => {
+    const fullEmail = `${localPart}@${isCustom ? customDomain : domain}`;
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/crud/send_email_code", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email:fullEmail }),
+      })
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("인증 메일이 발송되었습니다!");
+      } else {
+        alert("이메일 발송 실패 : " + data.error);
+      }
+    } catch (error) {
+      console.error("이메일 발송 중 오류 발생 : ", error);
+    }
+  }
+
+  const handleEmailCodeChange = (e) => {
+    setLocalEmailCode(e.target.value); // 입력된 인증 번호를 상태에 저장
+    setEmailCode(e.target.value); // 부모 컴포넌트의 상태로 전달
+  };
+
+  const handleCodeVerification = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/crud/verify_email_code', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ emailCode: emailCode }),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        setEmailValid(true);
+        alert("인증 성공!");
+      } else {
+        setEmailValid(false);
+        alert(result.error || "인증번호가 틀렸습니다.");
+      }
+    } catch (error) {
+      console.error("Error : ", error);
+      alert("인증번호 확인 중 오류가 발생했습니다.");
+    }
+  };
+
 
   // 이메일 입력 변경 시마다 유효성 검사와 중복 확인 수행
   useEffect(() => {
@@ -127,19 +180,16 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
         {message && (
           <p className={isEmailAvailable ? "valid" : "error"}>{message}</p>
         )}
-        <button onClick={checkEmail}>인증메일 발송</button>
+        <button onClick={sendEmailVerification}>인증메일 발송</button>
       </div>
       <div>
         <input
           type="text"
           placeholder="인증번호 입력"
           value={emailCode}
-          onChange={(e) => {
-            setLocalEmailCode(e.target.value);
-            setEmailCode(e.target.value);
-          }}
+          onChange={handleEmailCodeChange}
         />
-        <button id="check">확인</button>
+        <button id="check" onClick={handleCodeVerification}>확인</button>
       </div>
     </div>
   );
