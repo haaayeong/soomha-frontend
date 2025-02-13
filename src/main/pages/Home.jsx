@@ -1,3 +1,9 @@
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { fetchWeatherData } from '../../utils/weatherUtils';
+import axios from 'axios';
+
+
 import '../../styles/common.css'
 
 import Header from "../../components/Header";
@@ -12,9 +18,6 @@ import Footer from '../../components/Footer';
 
 import '../styles/Home.css'
 import '../styles/Main-media.css'
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 
 function Home() {
@@ -30,8 +33,15 @@ function Home() {
   const fetchRandomPlaces = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/place-cards?count=10');
-      console.log('랜덤 시설 리스트:', response.data);
-      setPlaces(response.data);  // 받은 데이터를 상태에 저장
+      const placeData = response.data;
+      const placesWithWeather = await Promise.all(
+        placeData.map(async (place) => {
+          const weather = await fetchWeatherData(place.latCrtsVl, place.lotCrtsVl);
+          return { ...place, weather };
+        })
+      );
+
+      setPlaces(placesWithWeather);
     } catch (error) {
       console.error('에러 발생:', error);
     }
