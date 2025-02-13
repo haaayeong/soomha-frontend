@@ -27,11 +27,17 @@ export const isValidPasswordMatch = (password, confirmPassword) => {
 
 // 이메일 유효성 검사
 export const isValidEmail = (email) => {
-  const regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+  const trimmedEmail = email.trim(); // 공백 제거
 
-  if (email === '') return "이메일을 입력하세요.";
-  if (!regex.test(email)) return "이메일 형식이 올바른지 확인해주세요.";
-  
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (trimmedEmail === '') {
+    return "이메일을 입력하세요.";
+  }
+  if (!regex.test(trimmedEmail)) {
+    return "이메일 형식이 올바른지 확인해주세요.";
+  }
+
   return "";
 };
 

@@ -14,22 +14,23 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
 
   // 이메일 주소 업데이트 함수
   const handleEmailChange = () => {
-    const fullEmail = `${localPart}@${isCustom ? customDomain : domain}`;
-    setEmail(fullEmail);
+    const fullEmail = `${localPart.trim()}@${isCustom ? customDomain.trim() : domain.trim()}`;
+    setEmail(fullEmail.trim());
   };
 
   // 이메일 유효성 검사 및 중복 확인
   const checkEmail = async () => {
     const fullEmail = `${localPart}@${isCustom ? customDomain : domain}`;
 
-    // 이메일이 유효하지 않으면 중복 확인하지 않음
-    if (!isValidEmail(fullEmail)) {
-      setEmailError("유효한 이메일을 입력해주세요.");
-      setIsEmailAvailable(null); // 중복 여부 초기화
+    const validationMessage = isValidEmail(fullEmail);
+    if (validationMessage !== "") {
+      setEmailError(validationMessage);
+      setIsEmailAvailable(null);
       setMessage("");
       setEmailValid(false);
       return;
     }
+
 
     // 이메일 유효성 검사 통과 후 중복 확인
     setEmailError("");
@@ -49,7 +50,6 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
       }
 
       const result = await response.json();
-      console.log("Email check result:", result);
 
       if (result.isAvailable) {
         setIsEmailAvailable(true);
@@ -61,21 +61,17 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
         setEmailAvailable(false); // 이미 사용 중인 이메일 상태 부모 컴포넌트로 전달
       }
     } catch (error) {
-      console.error("Error checking email:", error);
       setMessage("이메일 중복 확인 중 오류가 발생했습니다.");
     }
   };
+  
 
   // 이메일 입력 변경 시마다 유효성 검사와 중복 확인 수행
   useEffect(() => {
-    // 과도한 API 요청을 해결하기 위함.
-    const timer = setTimeout(() => {
-      if (localPart && (isCustom ? customDomain : domain)) {
-        checkEmail();
-      }
-    }, 500);
+    if(localPart && (isCustom ? customDomain : domain)) {
+      checkEmail();
+    }
 
-    return () => clearTimeout(timer);
   }, [localPart, domain, customDomain, isCustom]);
 
   return (
@@ -100,7 +96,7 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
             value={isCustom ? customDomain : domain}
             onChange={(e) => {
               if (isCustom) {
-                setDomain(e.target.value);
+                setCustomDomain(e.target.value);
               } else {
                 setDomain(e.target.value);
               }
@@ -131,7 +127,7 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
         {message && (
           <p className={isEmailAvailable ? "valid" : "error"}>{message}</p>
         )}
-        <button>인증메일 발송</button>
+        <button onClick={checkEmail}>인증메일 발송</button>
       </div>
       <div>
         <input

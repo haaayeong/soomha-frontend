@@ -107,10 +107,6 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-    // 비밀번호와 비밀번호 확인 값 출력
-    console.log("Password: ", password);
-    console.log("Confirm Password: ", confirmPassword); 
     
     if (password.trim() !== confirmPassword.trim()) {
       setConfirmPasswordError("비밀번호가 일치하지 않습니다.");
@@ -120,6 +116,7 @@ function Signup() {
 
     if(!emailValid || !emailAvailable) {
       alert("유효한 이메일을 입력하세요.");
+      setLoading(false);
       return;
     }
 
@@ -148,7 +145,7 @@ function Signup() {
       const result = await response.json();
 
       if(response.ok) {
-        alert(result.message);
+        alert("회원가입이 완료되었습니다.");
         navigate("/login")
       } else {
         if (Array.isArray(result.error)){
@@ -164,7 +161,7 @@ function Signup() {
       }
     } catch(error) {
       console.error("Error : ", error);
-      alert("회원가입에 실패했습니다.")
+      alert("회원가입 중 오류가 발생했습니다.")
     }
     setLoading(false);
   };
