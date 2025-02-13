@@ -13,7 +13,7 @@ import Footer from '../../components/Footer';
 import '../styles/Home.css'
 import '../styles/Main-media.css'
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
@@ -21,11 +21,11 @@ function Home() {
   const navigate = useNavigate();
   const [places, setPlaces] = useState([]);
 
+
   const pageHandler = (path) => {
     navigate(path)
   }
 
-  console.log('front')
   // 한 번에 10개 랜덤 장소를 가져오는 함수
   const fetchRandomPlaces = async () => {
     try {
@@ -41,19 +41,15 @@ function Home() {
     fetchRandomPlaces();
   }, []);
 
-  // places가 없으면 로딩 상태를 표시
-  if (!places.length) {
-    return <div>로딩 중...</div>;
-  }
 
   return (
     <main>
       <Header />
       <MainVisual />
+      <MainHealth pageHandler={pageHandler} />
       <MainGoodPlace pageHandler={pageHandler} places={places.slice(0, 5)} />
       <MainAllPlace pageHandler={pageHandler} places={places.slice(5, 10)} />
       <DustBoard pageHandler={pageHandler} />
-      <MainHealth pageHandler={pageHandler} />
       <MainQuiz pageHandler={pageHandler} />
       <Footer />
     </main>
