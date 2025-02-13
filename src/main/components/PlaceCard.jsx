@@ -23,7 +23,7 @@ function PlaceCard({ bool, pageHandler, place }) {
             <p>기온</p>
             <p>{tempMin} / {tempMax} ℃</p>
           </div>
-          <i className={`fa-solid ${weatherIcon}`}></i>
+          <i className={`${weatherIcon}`}></i>
         </div>
         <div className="weather-box">
           <p>강수확률</p>

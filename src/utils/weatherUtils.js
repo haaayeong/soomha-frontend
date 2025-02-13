@@ -75,7 +75,6 @@ const fetchWeatherData = async (lat, lon) => {
   const now = new Date();
   const base_date = now.toISOString().split("T")[0].replace(/-/g, "");
   const base_time = getBaseTime();
-  console.log(base_time);
 
   const url = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?`
     + `serviceKey=${API_KEY}&dataType=JSON&numOfRows=300&pageNo=1`
