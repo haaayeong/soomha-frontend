@@ -21,6 +21,7 @@ function Signup() {
   const [kindergarten, setKindergarten] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [verificationButton, setVerificationButton] = useState(false);
 
   // 에러 메세지 상태 관리
   const [usernameError, setUsernameError] = useState("");
@@ -120,6 +121,12 @@ function Signup() {
 
     if(!emailValid || !emailAvailable) {
       alert("유효한 이메일을 입력하세요.");
+      setLoading(false);
+      return;
+    }
+
+    if(!verificationButton) {
+      alert("인증번호 확인 버튼을 눌러주세요.")
       setLoading(false);
       return;
     }
@@ -231,7 +238,7 @@ function Signup() {
             {nicknameError && <p className={nicknameError.includes("사용 가능한") ? "valid" : "error"}>{nicknameError}</p>}
           </div>
 
-          <EmailInput setEmail={setEmail} setEmailCode={setEmailCode} setEmailValid={setEmailValid} setEmailAvailable={setEmailAvailable}/>
+          <EmailInput setEmail={setEmail} setEmailCode={setEmailCode} setEmailValid={setEmailValid} setEmailAvailable={setEmailAvailable} setVerificationButton={setVerificationButton}/>
 
           <div id="role">
             <p>가입 유형</p>
@@ -262,7 +269,7 @@ function Signup() {
           <button type="submit" disabled={loading} onClick={handleSubmit}>
             {loading ? "회원가입 중..." : "회원가입"}
           </button>
-          {error && <p>{error}</p>}
+          {error && <p className="error">{error}</p>}
         </div>
       </div>
       <Footer />

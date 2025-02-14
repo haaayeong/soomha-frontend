@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { isValidEmail } from "../util/validation"; // 이메일 유효성 검사 함수
 import '../style/Signup.css';
 
-function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }) {
+function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable, setVerificationButton }) {
   const [localPart, setLocalPart] = useState(""); // 이메일 아이디 부분
   const [domain, setDomain] = useState(""); // 이메일 도메인
   const [customDomain, setCustomDomain] = useState(""); // 사용자가 입력한 도메인
   const [isCustom, setIsCustom] = useState(false); // "직접 입력" 선택 여부
   const [emailError, setEmailError] = useState(""); // 이메일 유효성 검사
   const [emailCode, setLocalEmailCode] = useState(""); // 인증 코드 상태를 관리
+  const [emailCodeError, setEmailCodeError] = useState("") // 인증 코드 유효성 검사
   const [message, setMessage] = useState(""); // 상태 메시지
   const [isEmailAvailable, setIsEmailAvailable] = useState(null); // 이메일 중복 여부 상태
 
@@ -17,6 +18,11 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
     const fullEmail = `${localPart.trim()}@${isCustom ? customDomain.trim() : domain.trim()}`;
     setEmail(fullEmail.trim());
   };
+
+  // 이메일 변경될 때 자동으로 업데이트
+  useEffect(() => {
+    handleEmailChange();
+  }, [localPart, domain, customDomain, isCustom]);
 
   // 이메일 유효성 검사 및 중복 확인
   const checkEmail = async () => {
@@ -44,23 +50,24 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
         },
       });
 
-      if (!response.ok) {
-        throw new Error(`서버 오류: ${response.status}`)
-      }
-
       const result = await response.json();
+
+      if (response.status === 500) {
+        throw new Error("서버 오류");
+      }
 
       if (result.isAvailable) {
         setIsEmailAvailable(true);
-        setMessage("사용 가능한 이메일입니다.");
+        setMessage(result.message);
         setEmailAvailable(true); // 중복 확인 후 사용 가능한 상태 부모 컴포넌트로 전달
       } else {
         setIsEmailAvailable(false);
-        setMessage("이미 사용 중인 이메일입니다.");
+        setMessage(result.error);
         setEmailAvailable(false); // 이미 사용 중인 이메일 상태 부모 컴포넌트로 전달
       }
     } catch (error) {
-      setMessage("이메일 중복 확인 중 오류가 발생했습니다.");
+      console.error("이메일 중복 확인 중 오류 발생 : ", error);
+      setMessage("서버와의 통신 중 오류가 발생했습니다.");
     }
   };
 
@@ -94,7 +101,13 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
     setEmailCode(e.target.value); // 부모 컴포넌트의 상태로 전달
   };
 
+  // 인증번호 확인
   const handleCodeVerification = async () => {
+    if (emailCode.length !== 6) {
+      setEmailCodeError("인증번호는 6자리여야 합니다.");
+      return;
+    }
+
     try {
       const response = await fetch('http://127.0.0.1:5000/crud/verify_email_code', {
         method: 'POST',
@@ -107,14 +120,17 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
       const result = await response.json();
       if (response.ok) {
         setEmailValid(true);
-        alert("인증 성공!");
+        setVerificationButton(true);
+        setEmailCodeError("인증 성공!");
+        console.log(emailCode);
       } else {
         setEmailValid(false);
-        alert(result.error || "인증번호가 틀렸습니다.");
+        setVerificationButton(false);
+        setEmailCodeError(result.error || "인증번호가 틀렸습니다.");
       }
     } catch (error) {
       console.error("Error : ", error);
-      alert("인증번호 확인 중 오류가 발생했습니다.");
+      setEmailCodeError("인증번호 확인 중 오류가 발생했습니다.");
     }
   };
 
@@ -122,7 +138,11 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
   // 이메일 입력 변경 시마다 유효성 검사와 중복 확인 수행
   useEffect(() => {
     if(localPart && (isCustom ? customDomain : domain)) {
-      checkEmail();
+      const timer = setTimeout(() => {
+        checkEmail();
+      }, 500);
+
+      return () => clearTimeout(timer);
     }
 
   }, [localPart, domain, customDomain, isCustom]);
@@ -189,6 +209,7 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable }
           value={emailCode}
           onChange={handleEmailCodeChange}
         />
+        {emailCodeError && <p className={emailCodeError.includes("인증 성공!") ? "valid" : "error"}>{emailCodeError}</p>}
         <button id="check" onClick={handleCodeVerification}>확인</button>
       </div>
     </div>
