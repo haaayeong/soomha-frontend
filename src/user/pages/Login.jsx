@@ -2,10 +2,42 @@ import { useNavigate } from "react-router-dom";
 import "../style/Login.css";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import { isValidLogin } from "../util/validation";
+import axios from "axios";
+import { useState } from "react";
 
 function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    // 유효성 검사
+    const validationError = isValidLogin(username, password);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:5000/crud/login", {
+        username,
+        password,
+      });
+
+      // 토큰 저장
+      localStorage.setItem("token", response.data.token);
+
+      alert("로그인 성공!")
+      navigate("/");
+    } catch (err) {
+      setError("아이디 또는 비밀번호가 올바르지 않습니다.");
+    }
+  };
 
   return (
     <main>
@@ -13,9 +45,23 @@ function Login() {
       <div className="login">
         <div className="content-wrap">
           <h3>로그인</h3>
-          <input type="text" name="username" placeholder="아이디를 입력하세요" />
-          <input type="text" name="password" placeholder="비밀번호를 입력하세요" />
-          <button>로그인</button>
+          <input
+           type="text" 
+           name="username" 
+           placeholder="아이디를 입력하세요" 
+           value={username} 
+           onChange={(e) => setUsername(e.target.value)}
+          />
+
+          <input
+           type="text" 
+           name="password" 
+           placeholder="비밀번호를 입력하세요"
+           value={password}
+           onChange={(e) => setPassword(e.target.value)} 
+          />
+          {error && <p className="error">{error}</p>}
+          <button onClick={handleLogin}>로그인</button>
 
           <div className="content-footer">
             <p>아직 회원이 아니신가요?</p>
