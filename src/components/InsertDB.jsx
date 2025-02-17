@@ -28,14 +28,14 @@ function InsertDB() {
     }
   };
 
-  const dustTest = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/api/place-dust');
-      console.log("데이터 호출 성공", response.data.items);  // 수정된 부분: response.data.items로 접근
-    } catch (error) {
-      console.error("API 호출 실패:", error.response ? error.response.data : error.message);
-    }
-  };
+  // const dustTest = async () => {
+  //   try {
+  //     const response = await axios.get('http://localhost:5000/api/placeDust');
+  //     console.log("데이터 호출 성공", response.data);  // 수정된 부분: response.data.items로 접근
+  //   } catch (error) {
+  //     console.error("API 호출 실패:", error.response ? error.response.data : error.message);
+  //   }
+  // };
 
     return (
       <div style={{ width: '500px', height: '500px', margin: 'auto' }}>
@@ -53,9 +53,9 @@ function InsertDB() {
           </div>
         )}
 
-        <button onClick={dustTest} style={{marginTop: 50}}>
+        {/* <button onClick={dustTest} style={{marginTop: 50,padding: 10}} >
           미세먼지 호출 테스트
-        </button>
+        </button> */}
       </div>
     );
   }

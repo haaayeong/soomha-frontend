@@ -134,12 +134,12 @@ const parseWeatherData = (data) => {
     weatherInfo.tempMin = Math.min(...tempValues);  // 최소 기온
     weatherInfo.tempMax = Math.max(...tempValues);  // 최고 기온
   } else {
-    weatherInfo.tempMin = "정보 없음";
-    weatherInfo.tempMax = "정보 없음";
+    weatherInfo.tempMin = "점검중";
+    weatherInfo.tempMax = "점검중";
   }
 
   // 강수확률 정보가 없을 경우 기본값 설정
-  weatherInfo.pop = weatherInfo.pop || "정보 없음";
+  weatherInfo.pop = weatherInfo.pop || "점검중";
 
   return weatherInfo;
 };

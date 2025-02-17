@@ -51,7 +51,6 @@ function Home() {
     fetchRandomPlaces();
   }, []);
 
-
   return (
     <main>
       <Header />
