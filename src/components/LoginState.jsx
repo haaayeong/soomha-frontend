@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../styles/LoginState.css'
 import { useNavigate } from 'react-router-dom';
 
 function LoginState() {
   const [isOpen, setIsOpen] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
 
   const navigate = useNavigate();
 
@@ -16,26 +17,69 @@ function LoginState() {
     navigate("/");
   }
 
+  const handleUserInfo = () => {
+    navigate("/userInfo");
+  }
+
+  // 사용자 정보 로드
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        console.log("토큰:", token);
+        if (!token) throw new Error("No token found");
+
+        const response = await fetch("http://localhost:5000/auth/user", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+
+        // if (!response.ok) {
+        //   console.log(response)
+        //   const errorData = await response.json();
+        //   throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorData.error}`);
+        // }
+
+        const data = await response.json();
+        setUserInfo(data);
+        console.log("사용자 데이터 : ", data);
+      } catch (error) {
+        console.error("사용자 정보 로드 오류:", error.message);
+      }
+    }
+
+    fetchUserData();
+  }, []);
+
   return (
     <div className="login-state">
-      <p>ROLE</p>
-      <div className='login-state-nickname' onClick={toggleUserInfo}>
-        닉네임 님
-        <i className={`fa-solid fa-chevron-down ${isOpen ? 'open' : ''}`}></i>
-      </div>
-      <div className={`user-info-box ${isOpen ? 'show' : ''}`}>
-        <div className="user-info-content">
-          <i className="fa-solid fa-pen-to-square"></i>
-          <span>회원정보수정</span>
-        </div>
-        <div className="user-info-content">
-          <i className="fa-regular fa-comment fa-flip-horizontal"></i>
-          <span>내가 남긴 댓글</span></div>
-        <div className="user-info-content" onClick={handleLogout}>
-          <i className="fa-solid fa-arrow-right-from-bracket"></i>
-          <span>로그아웃</span>
-        </div>
-      </div>
+      {userInfo ? (
+        <>
+          <p>{userInfo.role === 'children' ? userInfo.level : userInfo.role}</p>
+          <div className='login-state-nickname' onClick={toggleUserInfo}>
+            {userInfo.nickname} 님
+            <i className={`fa-solid fa-chevron-down ${isOpen ? 'open' : ''}`}></i>
+          </div>
+          <div className={`user-info-box ${isOpen ? 'show' : ''}`}>
+            <div className="user-info-content" onClick={handleUserInfo}>
+              <i className="fa-solid fa-pen-to-square"></i>
+              <span>회원정보수정</span>
+            </div>
+            <div className="user-info-content">
+              <i className="fa-regular fa-comment fa-flip-horizontal"></i>
+              <span>내가 남긴 댓글</span></div>
+            <div className="user-info-content" onClick={handleLogout}>
+              <i className="fa-solid fa-arrow-right-from-bracket"></i>
+              <span>로그아웃</span>
+            </div>
+          </div>
+        </>
+      ) : (
+        <div>로딩 중...</div> // 사용자 정보 로드 중일 때
+      )}
     </div>
   )
 }

@@ -9,6 +9,10 @@ function MobileState({ handleLogout }) {
     navigate("/");
   }
 
+  const handleUserInfo = () => {
+    navigate("/userInfo");
+  }
+
   return (
     <div className="mobile-state">
       <div className="sidebar-user-info">
@@ -16,7 +20,7 @@ function MobileState({ handleLogout }) {
         <div className='login-state-nickname'>닉네임</div>
       </div>
       <div className='mobile-state-box mobile-state-tab'>
-        <div className="user-info-content mobile-state-content">
+        <div className="user-info-content mobile-state-content" onClick={handleUserInfo}>
           <i className="fa-solid fa-pen-to-square"></i>
           <span>회원정보수정</span>
         </div>

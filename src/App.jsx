@@ -11,6 +11,7 @@ import DetailWhere from "./whereToGo/components/DetailWhere"
 import Login from "./user/pages/Login";
 import Signup from "./user/pages/Signup";
 import ProtectedRoute from "./user/components/ProtectedRoute"
+import UserInfo from "./user/pages/UserInfo";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path='/login' element={<Login />}/>
         <Route path='/signup' element={<Signup />}/>
+        <Route path="/userInfo" element={<UserInfo />}/>
         <Route path='/whereToGo' element={<WhereToGo />}>
           <Route path='' element={<WhereContent />} />
           <Route path="region" element={<DustByRegion />} />
