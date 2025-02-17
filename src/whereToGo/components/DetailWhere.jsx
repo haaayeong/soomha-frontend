@@ -52,7 +52,8 @@ function DetailWhere() {
     if (place) {
       const lat = place?.latCrtsVl;
       const lng = place?.lotCrtsVl;
-      setupMap(lat, lng); // 주소를 넘겨서 지도 생성
+      const address = place?.ronaAddr;
+      setupMap(address,lat,lng); // 주소를 넘겨서 지도 생성
     }
 
   }, [place]);

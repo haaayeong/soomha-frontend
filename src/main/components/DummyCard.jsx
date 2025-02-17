@@ -4,7 +4,7 @@ function DummyCard({ bool }) {
 
   return (
     // 나중에 pageHandler 각 장소의 아이디로 변경
-    <div className="place-card" onClick={() => pageHandler('/whereToGo/1')} style={{ backgroundColor: '#fafafa' }}>
+    <div className="place-card"  style={{ backgroundColor: '#fafafa' }}>
       <div className="place-card-img-box" style={{ backgroundColor: '#f0f0f0' }}>
       </div>
       <h3 style={{ backgroundColor: '#f1f1f1',borderRadius:5 }}>　</h3>
