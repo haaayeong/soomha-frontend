@@ -53,7 +53,7 @@ function DetailWhere() {
       const lat = place?.latCrtsVl;
       const lng = place?.lotCrtsVl;
       const address = place?.ronaAddr;
-      setupMap(address,lat,lng); // 주소를 넘겨서 지도 생성
+      setupMap(address, lat, lng); // 주소를 넘겨서 지도 생성
     }
 
   }, [place]);
@@ -107,12 +107,16 @@ function DetailWhere() {
       <article className="detail-img-box">
         <div className="detail-main-img">
           <img src={images[currentImageIndex]} alt="Main" />
-          <button className="detail-img-btn-left" onClick={goToPrevImage}>
-            <i className="fa-solid fa-chevron-left"></i>
-          </button>
-          <button className="detail-img-btn-right" onClick={goToNextImage}>
-            <i className="fa-solid fa-chevron-right"></i>
-          </button>
+          {images.length > 1 &&
+            <>
+              <button className="detail-img-btn-left" onClick={goToPrevImage}>
+                <i className="fa-solid fa-chevron-left"></i>
+              </button>
+              <button className="detail-img-btn-right" onClick={goToNextImage}>
+                <i className="fa-solid fa-chevron-right"></i>
+              </button>
+            </>
+          }
         </div>
         <div className="detail-sub-img" ref={subImageContainerRef}>
           {images.length !== 1 && Array.isArray(images) && images.map((image, index) => (
@@ -121,7 +125,6 @@ function DetailWhere() {
               onClick={() => handleThumbnailClick(index)}
               className={index === currentImageIndex ? 'active' : ''}
             >
-              {images.length}
               <img src={image} alt={`Thumbnail ${index + 1}`} />
             </p>
           ))}
