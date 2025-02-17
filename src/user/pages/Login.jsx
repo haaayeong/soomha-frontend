@@ -24,7 +24,7 @@ function Login() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/crud/login", {
+      const response = await axios.post("http://localhost:5000/auth/login", {
         username,
         password,
       });
@@ -54,7 +54,7 @@ function Login() {
           />
 
           <input
-           type="text" 
+           type="password" 
            name="password" 
            placeholder="비밀번호를 입력하세요"
            value={password}

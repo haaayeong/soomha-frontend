@@ -7,14 +7,22 @@ import LoginState from "./LoginState";
 import '../styles/Header.css'
 import '../styles/Header-media.css'
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
 function Header(){
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token); // 토큰이 있으면 true, 없으면 false
+  }, []);
 
   const handleNavigation = (path) => {
     navigate(path);  
-  } 
+  };
+
   return(
     <header>
       <div className="nav-left">
@@ -27,11 +35,8 @@ function Header(){
           <i className="fa-solid fa-magnifying-glass"></i>
         </div>
 
-        {/* 로그인 안했을 때 */}
-        <LoginBtn/>
-
-        {/* 로그인 했을 때 */}
-        {/* <LoginState/> */}
+        {/* 로그인 상태에 따라 컴포넌트 변경 */}
+        {isLoggedIn ? <LoginState /> : <LoginBtn />}
         
       </div>
       

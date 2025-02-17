@@ -1,6 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import '../styles/MobileState.css'
 
-function MobileState() {
+function MobileState({ handleLogout }) {
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    handleLogout();
+    navigate("/");
+  }
+
   return (
     <div className="mobile-state">
       <div className="sidebar-user-info">
@@ -15,7 +23,7 @@ function MobileState() {
         <div className="user-info-content mobile-state-content">
           <i className="fa-regular fa-comment fa-flip-horizontal"></i>
           <span>내가 남긴 댓글</span></div>
-        <div className="user-info-content mobile-state-content">
+        <div className="user-info-content mobile-state-content" onClick={handleLogoutClick}>
           <i className="fa-solid fa-arrow-right-from-bracket"></i>
           <span>로그아웃</span>
         </div>

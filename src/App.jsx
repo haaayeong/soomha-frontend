@@ -10,6 +10,7 @@ import ActionGuidelines from "./healthInfo/components/ActionGuidelines"
 import DetailWhere from "./whereToGo/components/DetailWhere"
 import Login from "./user/pages/Login";
 import Signup from "./user/pages/Signup";
+import ProtectedRoute from "./user/components/ProtectedRoute"
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
           <Route path="region" element={<DustByRegion />} />
           <Route path=":pageNumber" element={<DetailWhere />} />
         </Route>
-        <Route path="/quiz" element={<Quiz />} />
+        <Route path="/quiz" element={<ProtectedRoute><Quiz /></ProtectedRoute>} />
         <Route path="/healthInfo" element={<HealthInfo />} >
           <Route path="" element={<HealthWarning />} />
           <Route path="actionGuidelines" element={<ActionGuidelines />} />

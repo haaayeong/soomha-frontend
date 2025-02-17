@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../styles/MobileNav.css'
 import '../styles/MobileSidebar.css'
 import LoginBtn from './LoginBtn';
@@ -7,10 +7,23 @@ import MobileState from './MobileState';
 
 function MobileNav({handleNavigation}) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
+
+  // 로그인 상태를 로컬스토리지에서 확인하여 설정
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  },[]);
+
+  // 로그아웃 후 상태 갱신 함수
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  }
 
   return (
     <>
@@ -24,10 +37,8 @@ function MobileNav({handleNavigation}) {
       <div className={`mobile-sidebar mobile-nav ${isSidebarOpen ? 'open' : ''}`}>
         <i className="fa-solid fa-chevron-right" onClick={toggleSidebar}></i>
         <div className="mobile-sidebar-login">
-          {/* 로그인 안했을때 */}
-          <LoginBtn bool={true} />
-          {/* 로그인했을때 */}
-          {/* <MobileState/> */}
+          {/* 로그인 상태에 따라 컴포넌트 변경 */}
+          {isLoggedIn ? <MobileState handleLogout={handleLogout}/> : <LoginBtn bool={true} /> }
         </div>
         <div className="mobile-nav-tab">
           <div className="user-info-content mobile-nav-content" onClick={()=>{handleNavigation('/whereToGo')}}>

@@ -82,3 +82,8 @@
 .login .content-footer p:last-child:hover {
   color: #357ab7;
 }
+
+.login .error {
+  color: red;
+  font-size: 14px;
+}

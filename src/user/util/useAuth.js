@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+// 로그인 상태 관리
 function useAuth() {
   const [user, setUser] = useState(null);
 
