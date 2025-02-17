@@ -43,7 +43,7 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable, 
 
     try {
       // 이메일 중복 확인 API 호출
-      const response = await fetch(`http://127.0.0.1:5000/crud/check-email?email=${fullEmail}`, {
+      const response = await fetch(`http://localhost:5000/crud/check-email?email=${fullEmail}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -76,12 +76,13 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable, 
     const fullEmail = `${localPart}@${isCustom ? customDomain : domain}`;
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/crud/send_email_code", {
+      const response = await fetch("http://localhost:5000/crud/send_email_code", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email:fullEmail }),
+        credentials: "include",
       })
 
       const data = await response.json();
@@ -109,12 +110,13 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable, 
     }
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/crud/verify_email_code', {
+      const response = await fetch('http://localhost:5000/crud/verify_email_code', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ emailCode: emailCode }),
+        credentials: "include",
       });
 
       const result = await response.json();

@@ -14,6 +14,7 @@ function LoginState() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    console.log("로그아웃됨")
     navigate("/");
   }
 
@@ -26,7 +27,6 @@ function LoginState() {
     const fetchUserData = async () => {
       try {
         const token = localStorage.getItem("token");
-        console.log("토큰:", token);
         if (!token) throw new Error("No token found");
 
         const response = await fetch("http://localhost:5000/auth/user", {
@@ -37,15 +37,13 @@ function LoginState() {
           },
         });
 
-        // if (!response.ok) {
-        //   console.log(response)
-        //   const errorData = await response.json();
-        //   throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorData.error}`);
-        // }
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorData.error}`);
+        }
 
         const data = await response.json();
         setUserInfo(data);
-        console.log("사용자 데이터 : ", data);
       } catch (error) {
         console.error("사용자 정보 로드 오류:", error.message);
       }

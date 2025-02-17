@@ -39,6 +39,13 @@ function Login() {
     }
   };
 
+  // 엔터 키로 로그인 처리
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleLogin(e);
+    }
+  };
+
   return (
     <main>
       <Header />
@@ -51,6 +58,7 @@ function Login() {
            placeholder="아이디를 입력하세요" 
            value={username} 
            onChange={(e) => setUsername(e.target.value)}
+           onKeyDown={handleKeyDown}
           />
 
           <input
@@ -58,7 +66,8 @@ function Login() {
            name="password" 
            placeholder="비밀번호를 입력하세요"
            value={password}
-           onChange={(e) => setPassword(e.target.value)} 
+           onChange={(e) => setPassword(e.target.value)}
+           onKeyDown={handleKeyDown}
           />
           {error && <p className="error">{error}</p>}
           <button onClick={handleLogin}>로그인</button>
