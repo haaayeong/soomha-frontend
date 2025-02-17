@@ -50,3 +50,9 @@ export const isValidNickname = (nickname) => {
 
   return "";
 }
+
+// 로그인 유효성 검사
+export const isValidLogin = (username, password) => {
+  if (username.trim() === "") return "아이디를 입력하세요.";
+  if (password.trim() === "") return "비밀번호를 입력하세요.";
+}
