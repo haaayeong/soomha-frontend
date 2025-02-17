@@ -4,34 +4,68 @@ import '../styles/DetailWhere.css'
 import DetailCardInfo from './DetailCardInfo';
 import CommentInput from './CommentInput';
 import { setupMap } from '../../utils/kakaoSearch';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function DetailWhere() {
   const [comments, setComments] = useState([]);  // 댓글 목록 상태
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const subImageContainerRef = useRef(null);  // 썸네일 스크롤을 조작할 ref
+  const [images, setImages] = useState([]);  // 이미지 목록 상태
+
   const navigate = useNavigate();
 
-  const images = [
-    "/images/thumb.jpg",
-    "/images/thumb2.jpg",
-    "/images/thumb3.jpg",
-    "/images/thumb4.jpg",
-    "/images/thumb5.jpg"
-  ]; // 이미지 목록 (예시)
-
-  useEffect(() => {
-    const address = '서울 송파구 올림픽로 240'; // 디테일 페이지에 맞는 주소로 검색
-    setupMap(address); // 주소를 넘겨서 지도 생성
-  }, []);
-
-  useEffect(() => {
-    // 썸네일 영역을 클릭된 이미지로 스크롤
-    if (subImageContainerRef.current) {
-      const targetThumbnail = subImageContainerRef.current.children[currentImageIndex];
-      targetThumbnail.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest'  });
+  const [place, setPlace] = useState(null);
+  const params = useParams();
+  const fetchPlace = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/place-detail/${params.pageNumber}`);
+      const data = await response.json();
+      setPlace(data);
     }
-  }, [currentImageIndex]);
+    catch (error) {
+      console.error('에러 발생:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPlace();
+  }, [params.pageNumber]);
+
+  useEffect(() => {
+    if (place && place.thumbnail) {
+      // 썸네일이 없으면 빈 배열 설정
+      if (place.thumbnail.length === 0) {
+        setImages([]);
+      } else {
+        // 썸네일이 하나라도 배열로 처리
+        setImages(Array.isArray(place.thumbnail) ? place.thumbnail.slice(0, 7) : [place.thumbnail]);
+      }
+    }
+  }, [place]);  // place가 변경될 때 실행
+
+
+
+
+  useEffect(() => {
+    // const address = '서울 송파구 올림픽로 240'; // 디테일 페이지에 맞는 주소로 검색
+    // setupMap(address); // 주소를 넘겨서 지도 생성
+    if (place) {
+      const lat = place?.latCrtsVl;
+      const lng = place?.lotCrtsVl;
+      setupMap(lat, lng); // 주소를 넘겨서 지도 생성
+    }
+
+  }, [place]);
+
+  useEffect(() => {
+    if (subImageContainerRef.current && images.length > 0) {
+      const targetThumbnail = subImageContainerRef.current.children[currentImageIndex];
+
+      if (targetThumbnail) {
+        targetThumbnail.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    }
+  }, [currentImageIndex, images]);  // `images`가 변경될 때만 실행
 
   const handleAddComment = (newCommentText) => {
     const newComment = {
@@ -65,7 +99,7 @@ function DetailWhere() {
 
   return (
     <section className="detail-where">
-      <button className='detail-back'onClick={handleGoBack}>
+      <button className='detail-back' onClick={handleGoBack}>
         <i className="fa-solid fa-chevron-left" ></i>뒤로가기
       </button>
 
@@ -80,12 +114,13 @@ function DetailWhere() {
           </button>
         </div>
         <div className="detail-sub-img" ref={subImageContainerRef}>
-          {images.map((image, index) => (
+          {images.length !== 1 && Array.isArray(images) && images.map((image, index) => (
             <p
               key={index}
               onClick={() => handleThumbnailClick(index)}
               className={index === currentImageIndex ? 'active' : ''}
             >
+              {images.length}
               <img src={image} alt={`Thumbnail ${index + 1}`} />
             </p>
           ))}
@@ -94,45 +129,74 @@ function DetailWhere() {
 
 
       <article className="detail-dash-board">
-        <DetailCardInfo />
+        {place &&
+          <DetailCardInfo place={place} />
+        }
       </article>
 
-      <article className="detail-place-info">
-        {/* 상세정보 섹션 */}
-        <div className="detail-info">
-          <h4>🏡 상세정보</h4>
-          <ul>
-            <li><strong>시설명:</strong> 세라젬웰파크 잠실롯데월드점</li>
-            <li><strong>시설 번호:</strong> 587590</li>
-            <li><strong>설치 장소:</strong> 놀이제공영업소</li>
-            <li><strong>운영 상태:</strong> 🟢 운영 중</li>
-            <li><strong>의무 여부:</strong> 비의무 시설</li>
-            <li><strong>공공/민간 여부:</strong> 민간 시설</li>
-          </ul>
-        </div>
 
-        {/* 위치정보 섹션 */}
-        <div className="location-info">
-          <h4>🗺️ 위치 정보</h4>
-          <ul>
-            <li><strong>주소:</strong> 서울 송파구 올림픽로 240</li>
-            <li><strong>상세 위치:</strong> 아이스링크 어드벤처동 지하 3층 4, 7호</li>
-            <li>
-              <div id="detail-map"></div>
-            </li>
-          </ul>
-        </div>
+      {place ? (
+        <article className="detail-place-info">
+          {/* 상세정보 섹션 */}
+          <div className="detail-info">
+            <h4>🏡 상세정보</h4>
+            <ul>
+              <li><strong>시설명:</strong> {place.pfctNm}</li>
+              <li><strong>시설 번호:</strong> {place.pfctSn}</li>
+              <li><strong>설치 장소:</strong> {place.instlPlaceCdNm}</li>
+              <li>
+                <strong>운영 상태:</strong>
+                {place.operYnCdNm === "운영" ? (
+                  <>
+                    🟢 운영 중
+                  </>
+                ) : (
+                  <>
+                    🔴 이용 금지
+                  </>
+                )}
+              </li>
 
-        {/* 운영 및 관리 정보 섹션 */}
-        <div className="operation-info">
-          <h4>✅ 운영 및 관리 정보</h4>
-          <ul>
-            <li><strong>설치일:</strong> 2023년 4월 19일</li>
-            <li><strong>시설 면적:</strong> 437.36㎡</li>
-            <li><strong>실내/실외:</strong> 실내 시설</li>
-          </ul>
-        </div>
-      </article>
+              <li><strong>의무 여부:</strong> {place.dutyCdNm} 시설</li>
+              <li><strong>공공/민간 여부:</strong> {place.prvtPblcYnCdNm} 시설</li>
+            </ul>
+          </div>
+
+          {/* 위치정보 섹션 */}
+          <div className="location-info">
+            <h4>🗺️ 위치 정보</h4>
+            <ul>
+              <li><strong>주소:</strong> {place.ronaAddr}</li>
+              {place.ronaDaddr === ''
+                ? '' :
+                <li><strong>상세 위치:</strong> {place.ronaDaddr}</li>
+              }
+              <li>
+                <div id="detail-map"></div>
+              </li>
+            </ul>
+          </div>
+
+          {/* 운영 및 관리 정보 섹션 */}
+          <div className="operation-info">
+            <h4>✅ 운영 및 관리 정보</h4>
+            <ul>
+              <li>
+                <strong>설치일:</strong>
+                {place.instlYmd && (
+                  <>
+                    {place.instlYmd.slice(0, 4)}년 {place.instlYmd.slice(4, 6)}월 {place.instlYmd.slice(6, 8)}일
+                  </>
+                )}
+              </li>
+              <li><strong>실내/실외:</strong> {place.idrodrCdNm} 시설</li>
+            </ul>
+          </div>
+
+        </article>
+      ) : (
+        <p>데이터를 불러오는 중입니다...</p>
+      )}
 
       <div className="detail-like">
         <button>

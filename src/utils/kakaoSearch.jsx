@@ -2,6 +2,8 @@ import axios from "axios";
 
 const KAKAO_API_KEY = '4007f233ac9ef230c1805573cdf02722';
 
+
+// 주소로 좌표 검색하는건데 좌표값 있어서 비활성화
 const searchAddress = async (query) => {
   try {
     const response = await axios.get('https://dapi.kakao.com/v2/local/search/address.json', {
@@ -52,10 +54,13 @@ const createMap = (lat, lng) => {
 };
 
 // 사용 예시: 주소를 보내면 지도를 생성
-const setupMap = async (address) => {
-  const coordinates = await searchAddress(address);
-  if (coordinates) {
-    createMap(coordinates.lat, coordinates.lng);
+// const setupMap = async (address) => {
+//   const coordinates = await searchAddress(address);
+
+// 좌표값으로 생성
+const setupMap = async (lat, lng) => {
+  if (lat && lng) {
+    createMap(lat, lng);
   } else {
     console.error('위치를 찾을 수 없습니다.');
   }

@@ -9,13 +9,14 @@ import HealthWarning from "./healthInfo/components/HealthWarning"
 import ActionGuidelines from "./healthInfo/components/ActionGuidelines"
 import DetailWhere from "./whereToGo/components/DetailWhere"
 import InsertDB from "./components/InsertDB"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
 
 function App() {
-
+  const queryClient = new QueryClient();
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/whereToGo' element={<WhereToGo />}>
@@ -30,7 +31,7 @@ function App() {
         </Route>
         <Route path='/insertDB' element={<InsertDB />} />
       </Routes>
-    </>
+    </QueryClientProvider>
   )
 }
 
