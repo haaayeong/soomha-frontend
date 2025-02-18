@@ -20,6 +20,8 @@ function WhereContent() {
     date: "", // 다음 주 날짜 필터 (isNextWeek가 true일 때만 사용)
   });
 
+  // 배치 크기 설정
+  const BATCH_SIZE = 5; // 한 번에 처리할 데이터 개수
 
   // 데이터 로딩 함수
   const loadMoreData = async () => {
@@ -44,12 +46,19 @@ function WhereContent() {
       const data = await response.json();
 
       if (data.length > 0) {
-        const placesWithWeather = await Promise.all(
-          data.map(async (place) => {
-            const weather = await fetchWeatherData(place.latCrtsVl, place.lotCrtsVl);
-            return { ...place, weather };
-          })
-        );
+        // 배치 단위로 날씨 데이터 요청
+        const batches = [];
+        for (let i = 0; i < data.length; i += BATCH_SIZE) {
+          const batch = data.slice(i, i + BATCH_SIZE); // 현재 배치 단위로 자르기
+          batches.push(batch.map((place) => fetchWeatherData(place.latCrtsVl, place.lotCrtsVl)));
+        }
+
+        // 모든 배치가 완료되면 상태 업데이트
+        const weatherData = await Promise.all(batches.map(batch => Promise.all(batch)));
+        const placesWithWeather = data.map((place, index) => ({
+          ...place,
+          weather: weatherData.flat()[index], // 날씨 정보 병합
+        }));
 
         setItems((prevItems) => [...prevItems, ...placesWithWeather]);
         setOffset((prevOffset) => prevOffset + count);
