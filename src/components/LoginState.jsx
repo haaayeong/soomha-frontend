@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import '../styles/LoginState.css'
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../user/util/UserContext';
 
 function LoginState({ handleLogout }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [userInfo, setUserInfo] = useState(null);
+  const { userInfo, loading } = useUser();
 
   const navigate = useNavigate();
 
@@ -21,35 +22,7 @@ function LoginState({ handleLogout }) {
     navigate("/userInfo");
   }
 
-  // 사용자 정보 로드
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) throw new Error("No token found");
-
-        const response = await fetch("http://localhost:5000/auth/user", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorData.error}`);
-        }
-
-        const data = await response.json();
-        setUserInfo(data);
-      } catch (error) {
-        console.error("사용자 정보 로드 오류:", error.message);
-      }
-    }
-
-    fetchUserData();
-  }, []);
+  if (loading) return <div>로딩 중...</div>;
 
   return (
     <div className="login-state">
@@ -75,7 +48,7 @@ function LoginState({ handleLogout }) {
           </div>
         </>
       ) : (
-        <div>로딩 중...</div> // 사용자 정보 로드 중일 때
+        <div>로그인 필요</div> // 사용자 정보 로드 중일 때
       )}
     </div>
   )
