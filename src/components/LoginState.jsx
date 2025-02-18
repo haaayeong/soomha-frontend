@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import '../styles/LoginState.css'
 import { useNavigate } from 'react-router-dom';
 
-function LoginState() {
+function LoginState({ handleLogout }) {
   const [isOpen, setIsOpen] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
 
@@ -12,9 +12,8 @@ function LoginState() {
     setIsOpen((prev) => !prev);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    console.log("로그아웃됨")
+  const handleLogoutClick = () => {
+    handleLogout();
     navigate("/");
   }
 
@@ -56,7 +55,7 @@ function LoginState() {
     <div className="login-state">
       {userInfo ? (
         <>
-          <p>{userInfo.role === 'children' ? userInfo.level : userInfo.role}</p>
+          <p>{userInfo.role === 'CHILD' ? userInfo.level : userInfo.role}</p>
           <div className='login-state-nickname' onClick={toggleUserInfo}>
             {userInfo.nickname} 님
             <i className={`fa-solid fa-chevron-down ${isOpen ? 'open' : ''}`}></i>
@@ -69,7 +68,7 @@ function LoginState() {
             <div className="user-info-content">
               <i className="fa-regular fa-comment fa-flip-horizontal"></i>
               <span>내가 남긴 댓글</span></div>
-            <div className="user-info-content" onClick={handleLogout}>
+            <div className="user-info-content" onClick={handleLogoutClick}>
               <i className="fa-solid fa-arrow-right-from-bracket"></i>
               <span>로그아웃</span>
             </div>

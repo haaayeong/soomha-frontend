@@ -19,6 +19,12 @@ function Header(){
     setIsLoggedIn(!!token); // 토큰이 있으면 true, 없으면 false
   }, []);
 
+  // 로그아웃 후 상태 갱신 함수
+  const handleLogout = () => {
+    localStorage.removeItem("token")
+    setIsLoggedIn(false);
+  }
+
   const handleNavigation = (path) => {
     navigate(path);  
   };
@@ -36,7 +42,7 @@ function Header(){
         </div>
 
         {/* 로그인 상태에 따라 컴포넌트 변경 */}
-        {isLoggedIn ? <LoginState /> : <LoginBtn />}
+        {isLoggedIn ? <LoginState handleLogout={handleLogout}/> : <LoginBtn />}
         
       </div>
       
