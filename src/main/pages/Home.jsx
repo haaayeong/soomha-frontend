@@ -50,8 +50,8 @@ function Home() {
   const { data: places = [] } = useQuery({
     queryKey: ['places'],  // 쿼리 키는 배열이지만 객체 안에서 사용
     queryFn: fetchRandomPlaces,  // 데이터를 가져올 함수
-    staleTime: 1000 * 60 * 5,  // 5분 동안 데이터 캐시 유지
-    cacheTime: 1000 * 60 * 10, // 10분 동안 캐시 유지
+    staleTime: 10000 * 60 * 5,  // 5분 동안 데이터 캐시 유지
+    cacheTime: 10000 * 60 * 10, // 10분 동안 캐시 유지
   });
 
 

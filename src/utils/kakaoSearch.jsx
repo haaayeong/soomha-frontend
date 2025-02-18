@@ -26,7 +26,7 @@ const searchAddress = async (query) => {
       return null;
     }
   } catch (error) {
-    console.error('주소 검색 실패:', error);
+    console.error('주소지 검색 실패 좌표로 검색 시작합니다.');
     return null;
   }
 };

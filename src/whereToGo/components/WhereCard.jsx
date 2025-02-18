@@ -2,16 +2,15 @@ import WhereCardInfo from './WhereCardInfo';
 import usePageHandler from "../../utils/usePageHandler";
 
 
-function WhereCard({isNextWeek}) {
+function WhereCard({isNextWeek, place}) {
   const pageHandler = usePageHandler();
-  
   return (
-    <div className="where-card" onClick={()=>pageHandler('1')}>
+    <div className="where-card" onClick={()=>pageHandler(`/whereToGo/${place.id}`)}>
       <div className="where-thumb">
-        <img src="/images/thumb.jpg" alt="" />
+        <img src={place.thumbnail} alt="" />
       </div>
 
-      <WhereCardInfo isNextWeek={isNextWeek}/>
+      <WhereCardInfo isNextWeek={isNextWeek} place={place}/>
 
     </div>
   )
