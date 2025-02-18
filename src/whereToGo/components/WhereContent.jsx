@@ -3,6 +3,7 @@ import SelectFilter from "./SelectFilter";
 import WhereCard from "./WhereCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchWeatherData } from "../../utils/weatherUtils"; // 날씨 정보를 가져오는 유틸리티 함수
+import DummyWhereCard from "./DummyWhereCard";
 
 function WhereContent() {
   const [isNextWeek, setIsNextWeek] = useState(false);
@@ -11,44 +12,65 @@ function WhereContent() {
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0); // 페이지네이션을 위한 offset 상태
 
+  // 🔹 필터 상태 추가
+  const [filters, setFilters] = useState({
+    dust: "all",
+    category: "all",
+    indoorOutdoor: "all",
+    date: "", // 다음 주 날짜 필터 (isNextWeek가 true일 때만 사용)
+  });
+
+
   // 데이터 로딩 함수
   const loadMoreData = async () => {
-    if (loading) return; // 이미 로딩 중이면 중복 요청 방지
+    if (loading || !hasMore) return;
     setLoading(true);
 
     try {
-      const count = 10; // 한 번에 가져올 데이터 수
-      const response = await fetch(`http://localhost:5000/api/place-cards-scroll?count=${count}&offset=${offset}`);
+      const count = 10;
+
+      // ✅ 필터를 API 요청에 추가
+      const queryParams = new URLSearchParams({
+        count,
+        offset,
+        dust: filters.dust,
+        category: filters.category,
+        indoorOutdoor: filters.indoorOutdoor,
+        date: filters.date,
+        isNextWeek,
+      }).toString();
+
+      const response = await fetch(`http://localhost:5000/api/place-cards-scroll?${queryParams}`);
       const data = await response.json();
 
       if (data.length > 0) {
-        // 각 장소에 대해 날씨 정보를 추가
         const placesWithWeather = await Promise.all(
           data.map(async (place) => {
             const weather = await fetchWeatherData(place.latCrtsVl, place.lotCrtsVl);
-            return { ...place, weather }; // 날씨 정보 추가
+            return { ...place, weather };
           })
         );
 
-        setItems((prevItems) => [...prevItems, ...placesWithWeather]); // 기존 데이터에 새로운 데이터 추가
-        setOffset((prevOffset) => prevOffset + count); // offset 갱신
+        setItems((prevItems) => [...prevItems, ...placesWithWeather]);
+        setOffset((prevOffset) => prevOffset + count);
       } else {
-        setHasMore(false); // 데이터가 더 이상 없으면 hasMore를 false로 설정
+        setHasMore(false);
       }
     } catch (error) {
       console.error("데이터 로딩 중 오류 발생:", error);
     } finally {
-      setLoading(false); // 로딩 상태 해제
+      setLoading(false);
     }
   };
 
-  // isNextWeek 값이 바뀔 때마다 items 초기화하고 데이터 로딩
+  // ✅ 필터나 isNextWeek 변경 시 데이터 초기화 후 다시 로드
   useEffect(() => {
-    setItems([]); // isNextWeek가 바뀔 때마다 기존 items를 초기화
-    setOffset(0); // offset도 초기화
-    setHasMore(true); // 더 이상 데이터가 없으면 false로 설정
-    loadMoreData(); // 새로운 데이터 로딩
-  }, [isNextWeek]);
+    setItems([]);
+    setOffset(0);
+    setHasMore(true);
+    loadMoreData();
+  }, [isNextWeek, filters]); // 필터 값이 바뀌면 다시 로드
+
 
   return (
     <section className="where-content">
@@ -67,14 +89,15 @@ function WhereContent() {
         </button>
       </article>
 
-      <SelectFilter isNextWeek={isNextWeek} />
+      <SelectFilter isNextWeek={isNextWeek} filters={filters} setFilters={setFilters} />
 
       <InfiniteScroll
         dataLength={items.length} // 현재 로딩된 항목 개수
         next={loadMoreData} // 더 많은 데이터를 로드하는 함수
         hasMore={hasMore} // 더 이상 로드할 데이터가 있는지 여부
-        loader={<h4>Loading...</h4>} // 로딩 중 표시
-        endMessage={<p>No more items to show</p>} // 끝에 도달했을 때 표시
+        loader={<DummyWhereCard isNextWeek={isNextWeek} />
+        } // 로딩 중 표시
+        endMessage={<p className="no-items-message">조회된 항목이 없습니다.</p>}
       >
         <article className="where-cards">
           {items.map((item) => (

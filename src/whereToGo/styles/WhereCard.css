@@ -110,7 +110,7 @@
 .card-weather-temp p:last-of-type {
   grid-column: 1;
   grid-row: 2;
-  font-size: 1em;
+  font-size: 0.9em;
   color: #fff;
   font-weight: bold;
 
