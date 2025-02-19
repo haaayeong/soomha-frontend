@@ -19,17 +19,28 @@ function UserInfo() {
   };
 
   const handleSave = async () => {
+    console.log("보내는 데이터: ", editedInfo);
+
     try {
-      const response = await fetch("/auth/update-user", {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        alert("로그인이 필요합니다.");
+        return;
+      }
+
+      const response = await fetch("http://localhost:5000/auth/update-user", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify(editedInfo), // 수정된 정보를 보내
       });
 
       if (response.ok) {
         const updatedUser = await response.json();
+        console.log("수정 후 데이터: ", updatedUser)
         setUserInfo(updatedUser); // 수정된 사용자 정보 업데이트
         setIsEditing(false); // 수정 완료 후 종료
       } else {
@@ -44,15 +55,23 @@ function UserInfo() {
   const handleDelete = async () => {
     if (window.confirm("정말 탈퇴하시겠습니까?")) {
       try {
-        const response = await fetch("/auth/delete-account", {
+        const token = localStorage.getItem("token");
+
+        if(!token) {
+          alert("로그인이 필요합니다.");
+          return;
+        }
+
+        const response = await fetch("http://localhost:5000/auth/delete-account", {
           method: "DELETE",
           headers: {
-            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
           },
         });
 
         if (response.ok) {
           alert("회원 탈퇴가 완료되었습니다.");
+          localStorage.removeItem("token")
           // 로그아웃 후 리디렉션 등
           window.location.href = "/"; // 홈으로 리디렉션
         } else {

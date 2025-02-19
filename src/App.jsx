@@ -25,6 +25,9 @@ function App() {
       <UserProvider>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path='/login' element={<Login />}/>
+          <Route path='/signup' element={<Signup />}/>
+          <Route path="/userInfo" element={<UserInfo />}/>
           <Route path='/whereToGo' element={<WhereToGo />}>
             <Route path='' element={<WhereContent />} />
             <Route path="region" element={<DustByRegion />} />
