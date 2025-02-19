@@ -1,11 +1,11 @@
 import '../styles/MainHealth.css'
 
-function MainHealth(){
+function MainHealth({pageHandler}){
   return(
     <section className="main-health">
       <div className="main-place-top main-health-top">
         <h2>오늘의 건강 예측 정보</h2>
-        <p></p>
+        <p onClick={()=>pageHandler('/healthInfo')}></p>
       </div>
       <article className="main-health-box">
           <div className="main-health-content">

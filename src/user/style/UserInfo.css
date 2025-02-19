@@ -37,7 +37,7 @@
 
 /* 사용자 정보 항목 */
 .user-info-page p {
-  font-size: 16px;
+  font-size: 20px;
   color: #555;
   margin: 8px 0;
 }
@@ -48,12 +48,13 @@
 
 /* 어린이 레벨 & 도장 개수 스타일 */
 .user-info p {
-  font-size: 16px;
+  font-size: 20px;
   color: #333;
 }
 
 .user-info p strong {
   font-weight: bold;
+  font-size: 20px;
 }
 
 /* 버튼들 스타일링 */

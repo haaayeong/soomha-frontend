@@ -135,3 +135,14 @@ label {
   gap: 10px;
 }
 
+.no-items-message {
+  text-align: center;        /* 텍스트 가운데 정렬 */
+  font-size: 18px;           /* 글씨 크기 */
+  color: #888;               /* 글씨 색상 (좀 더 부드러운 색상) */
+  font-weight: bold;         /* 글씨 두껍게 */
+  padding: 20px 0;           /* 위, 아래 여백 */
+  margin-top: 30px;          /* 상단 여백 */
+  background-color: #f9f9f9; /* 배경색 (끝 메시지를 돋보이게) */
+  border-radius: 5px;        /* 둥근 모서리 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
