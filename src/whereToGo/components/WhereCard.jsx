@@ -7,7 +7,7 @@ function WhereCard({isNextWeek, place}) {
   return (
     <div className="where-card" onClick={()=>pageHandler(`/whereToGo/${place.id}`)}>
       <div className="where-thumb">
-        <img src={place.thumbnail} alt="" />
+        <img src={place.thumbnail} alt="" loading='lazy'/>
       </div>
 
       <WhereCardInfo isNextWeek={isNextWeek} place={place}/>

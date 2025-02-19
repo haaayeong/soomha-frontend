@@ -96,6 +96,18 @@
   background-color: #e53935;
 }
 
+.user-info-page .userinfo-change {
+  padding:5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 18;
+}
+
+.user-info-page .user-info input:focus {
+  outline: none;
+  border: 2px solid #a1a1a1
+}
+
 /* 반응형 디자인 */
 @media (max-width: 768px) {
   .user-info-page {

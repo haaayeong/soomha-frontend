@@ -111,6 +111,7 @@ function UserInfo() {
                 name="email"
                 value={editedInfo.email}
                 onChange={handleChange}
+                className="userinfo-change"
               />
             ) : (
               userInfo.email
@@ -135,6 +136,7 @@ function UserInfo() {
                   name="kindergarten"
                   value={editedInfo.kindergarten || ""}
                   onChange={handleChange}
+                  className="userinfo-change"
                 />
               ) : (
                 userInfo.kindergarten || "없음"
@@ -149,6 +151,7 @@ function UserInfo() {
                 name="area"
                 value={editedInfo.area}
                 onChange={handleChange}
+                className="userinfo-change"
               />
             ) : (
               userInfo.area
