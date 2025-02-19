@@ -21,19 +21,19 @@ function GuideContent(){
             <tr>
               <td style={{ backgroundColor: '#65b24b' }}>보통</td>
               <td>31~80 미세먼지 단위</td>
-              <td>0~15 초미세먼지 단위</td>
+              <td>16~35 초미세먼지 단위</td>
               <td>장시간 야외활동 시 주의</td>
             </tr>
             <tr>
               <td style={{ backgroundColor: '#e2d058' }}>나쁨</td>
               <td>81~150 미세먼지 단위</td>
-              <td>0~15 초미세먼지 단위</td>
+              <td>36~75 초미세먼지 단위</td>
               <td>야외 활동 자제, 마스크 착용 권장</td>
             </tr>
             <tr>
               <td style={{ backgroundColor: '#ec7a7a' }}>매우 나쁨</td>
               <td>151 이상 미세먼지 단위</td>
-              <td>0~15 초미세먼지 단위</td>
+              <td>76 이상 초미세먼지 단위</td>
               <td>외출 자제, 건강 취약층은 실내 생활 권장</td>
             </tr>
           </tbody>

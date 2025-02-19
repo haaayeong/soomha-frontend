@@ -2,6 +2,7 @@
   width: 380px;
   max-width: 380px;
   background-color: #e6f2f9;
+  /* background-color: #ecf4f8; */
   padding: 10px;
   border-radius: 15px;
   flex-shrink: 0;
@@ -25,6 +26,9 @@
   text-align: center;
   margin-top: 25px;
   margin-bottom: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
@@ -40,7 +44,8 @@
   justify-content: space-around;
   gap: 5px;
   width: 50%;
-  background-color: #86c1e0;
+  /* background-color: #86c1e0; */
+  background-color: #9bd5f5;
   padding: 10px;
   border-radius: 25px;
 }
@@ -68,7 +73,34 @@
   font-size: 2em;
   color: #ffc40d;
 }
+/* 날씨 상태별 색상 추가 */
+.weather-box .fa-sun {
+  color: #ffd43b; /* 맑음: 노란색 */
+}
 
+.weather-box .fa-cloud-sun {
+  color: #cccccc; /* 구름 조금: 밝은 회색 */
+}
+
+.weather-box .fa-cloud {
+  color: #fff; /* 구름 많음: 어두운 회색 */
+}
+
+.weather-box .fa-cloud-rain {
+  color: #1e90ff; /* 비: 파란색 */
+}
+
+.weather-box .fa-cloud-showers-heavy {
+  color: #1e90ff; /* 비: 파란색 */
+}
+
+.weather-box .fa-snowflake {
+  color: #ffffff; /* 눈: 흰색 */
+}
+
+.weather-box .fa-bolt {
+  color: #ff8c00; /* 천둥번개: 주황색 */
+}
 
 
 /* ------------------미세먼지---------- */
@@ -87,7 +119,9 @@
   align-items: center;
   justify-content: space-around;
   gap: 5px;
-  background-color: #86c1e0;
+  /* background-color: #86c1e0; */
+  background-color: #9bd5f5;
+
   border-radius: 25px;
   margin-top: 15px;
 }
@@ -125,7 +159,7 @@
   flex: 1 100%;
   width: 100%;
   height: 10px;
-  background-color: #ebebeb;
+  background-color: #c7ddf16e;
   border-radius: 15px;
   overflow: hidden;
 }
