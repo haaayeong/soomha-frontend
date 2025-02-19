@@ -104,33 +104,34 @@ function DetailWhere() {
         <i className="fa-solid fa-chevron-left" ></i>뒤로가기
       </button>
 
-      <article className="detail-img-box">
-        <div className="detail-main-img">
-          <img src={images[currentImageIndex]} alt="Main" />
-          {images.length > 1 &&
-            <>
-              <button className="detail-img-btn-left" onClick={goToPrevImage}>
-                <i className="fa-solid fa-chevron-left"></i>
-              </button>
-              <button className="detail-img-btn-right" onClick={goToNextImage}>
-                <i className="fa-solid fa-chevron-right"></i>
-              </button>
-            </>
-          }
-        </div>
-        <div className="detail-sub-img" ref={subImageContainerRef}>
-          {images.length !== 1 && Array.isArray(images) && images.map((image, index) => (
-            <p
-              key={index}
-              onClick={() => handleThumbnailClick(index)}
-              className={index === currentImageIndex ? 'active' : ''}
-            >
-              <img src={image} alt={`Thumbnail ${index + 1}`} />
-            </p>
-          ))}
-        </div>
-      </article>
-
+      {place &&
+        <article className="detail-img-box">
+          <div className="detail-main-img">
+            <img src={images[currentImageIndex]} alt="썸네일이미지" />
+            {images.length > 1 &&
+              <>
+                <button className="detail-img-btn-left" onClick={goToPrevImage}>
+                  <i className="fa-solid fa-chevron-left"></i>
+                </button>
+                <button className="detail-img-btn-right" onClick={goToNextImage}>
+                  <i className="fa-solid fa-chevron-right"></i>
+                </button>
+              </>
+            }
+          </div>
+          <div className="detail-sub-img" ref={subImageContainerRef}>
+            {images.length !== 1 && Array.isArray(images) && images.map((image, index) => (
+              <p
+                key={index}
+                onClick={() => handleThumbnailClick(index)}
+                className={index === currentImageIndex ? 'active' : ''}
+              >
+                <img src={image} alt={`Thumbnail ${index + 1}`} />
+              </p>
+            ))}
+          </div>
+        </article>
+      }
 
       <article className="detail-dash-board">
         {place &&
