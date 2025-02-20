@@ -1,0 +1,89 @@
+*{
+  margin : 0;
+  padding : 0;
+  box-sizing: border-box;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  overflow: clip;
+}
+
+.login .content-wrap {
+  width: 320px;
+  padding: 25px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.login h3 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.login input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.login input:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+.login button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 10px;
+}
+
+.login button:hover {
+  background-color: #357ab7;
+}
+
+.login .content-footer {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #666;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.login .content-footer p {
+  margin: 0;
+}
+
+.login .content-footer p:last-child {
+  font-weight: bold;
+  color: #4a90e2;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.login .content-footer p:last-child:hover {
+  color: #357ab7;
+}
+
+.login .error {
+  color: red;
+  font-size: 14px;
+}
