@@ -91,9 +91,12 @@ function EmailInput({ setEmail, setEmailCode, setEmailValid, setEmailAvailable, 
         alert("인증 메일이 발송되었습니다!");
       } else {
         alert("이메일 발송 실패 : " + data.error);
+        setIsEmailAvailable(false);
+        setMessage(data.error);
       }
     } catch (error) {
       console.error("이메일 발송 중 오류 발생 : ", error);
+      setEmailError("서버 오류로 인해 이메일을 보낼 수 없습니다.")
     }
   }
 
