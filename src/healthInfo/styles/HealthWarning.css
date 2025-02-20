@@ -60,7 +60,7 @@
 
 .base-age {
   padding: 7px 10px;
-  min-width:80px;
+  min-width: 80px;
   text-align: center;
   border-radius: 5px;
 }
@@ -90,25 +90,30 @@
   border-radius: 10px;
 
 }
-.age-group:nth-of-type(1) .allergy-type{
+
+.age-group:nth-of-type(1) .allergy-type {
   border: 3px solid #8bcdcd;
 }
-.age-group:nth-of-type(2) .allergy-type{
+
+.age-group:nth-of-type(2) .allergy-type {
   border: 3px solid #86c1e0;
 }
-.age-group:nth-of-type(3) .allergy-type{
+
+.age-group:nth-of-type(3) .allergy-type {
   border: 3px solid #af8bb7;
 }
 
-.allergy-type p{
+.allergy-type p {
   font-size: 1em;
 }
-.allergy-type p:first-child{
+
+.allergy-type p:first-child {
   color: #666;
   margin-bottom: 5px;
 }
-.allergy-type p:last-child{
-  font-size: 1.5em;
+
+.allergy-type p:last-child {
+  font-size: 1.2em;
 }
 
 
@@ -118,9 +123,10 @@
   }
 
   .health-warning .main-health-count-box div p:last-child {
-    padding: 25px 60px;
+    padding: 25px 50px;
   }
-  .gender-allergy-data{
+
+  .gender-allergy-data {
     flex-direction: column;
   }
 }
@@ -135,16 +141,28 @@
   }
 
   .health-warning .main-health-count-box div p:last-child {
-    padding: 15px 40px;
+    padding: 15px 35px;
   }
-  .age-group,.allergy-box{
+
+  .age-group,
+  .allergy-box {
     flex-direction: column;
   }
-  .age-based-allergy-data{
+
+  .age-based-allergy-data {
     flex-direction: row;
   }
-  .allergy-type{
+
+  .allergy-type {
     width: 100px;
+  }
+
+  .allergy-type p {
+    font-size: .8em;
+  }
+
+  .allergy-type p:last-child {
+    font-size: .8em;
   }
 }
 
@@ -156,37 +174,53 @@
 
   .health-warning .main-health-count-box div p:last-child {
     padding: 10px 20px;
-    font-size: 1.5em;
+    font-size: 1em;
   }
 
   .health-warning .main-health-count-box div p:first-child {
     font-size: 1em;
   }
-  .allergy-type{
+
+  .allergy-type {
     width: auto;
     min-width: 70px;
-    font-size: .7em;
+    font-size: .8em;
   }
+
+  .allergy-type p {
+    font-size: .9em;
+  }
+  .allergy-type p:last-child {
+    font-size: .69em;
+  }
+
 }
 
 
 @media (max-width:600px) {
-  .gender-allergy-data{
-    margin:20px 0;
+  .gender-allergy-data {
+    margin: 20px 0;
     gap: 25px;
   }
-  .gender-icon{
+
+  .gender-icon {
     width: 100px;
     height: 100px;
   }
-  .age-based-allergy-data{
+
+  .age-based-allergy-data {
     gap: 5px;
   }
-  .allergy-box{
-    gap:5px;
+
+  .allergy-box {
+    gap: 5px;
   }
-  .allergy-type{
+
+  .allergy-type {
     font-size: .6em;
-    padding:5px
+    padding: 5px
+  }
+  .allergy-type p:last-child {
+    font-size: 1em;
   }
 }
