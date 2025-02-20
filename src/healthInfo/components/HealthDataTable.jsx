@@ -23,12 +23,12 @@ function HealthDataTable() {
           <tr>
             <td rowSpan="6" colSpan="2">
               2018년~2023년 중 <br/>
-              오늘날짜에 해당하는 데이터
+              이번달에 해당하는 데이터
             </td>
-            <td rowSpan="6">내 지역에 해당하는 시/군/구</td>
+            <td rowSpan="6">내 지역에 해당하는 시/도</td>
             <td rowSpan="3" className='table-white'>남</td>
             <td>0~5세</td>
-            <td rowSpan="6" colSpan="3">해당 날짜의 병원 방문 환자 수</td>
+            <td rowSpan="6" colSpan="3">해당 월의 통합 병원 이용 환자 수</td>
           </tr>
           <tr>
             <td>6~11세</td>
