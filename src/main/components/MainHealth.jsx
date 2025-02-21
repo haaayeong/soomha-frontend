@@ -47,7 +47,7 @@ function MainHealth({ pageHandler }) {
       <article className="main-health-box">
         <div className="main-health-content">
           <p className="main-health-text-box">
-            <span>오늘의<strong>"서울"</strong>미세먼지 농도를 기반으로 예상되는<span className='br'></span> 비염,천식,아토피 환자 수를 확인하세요.</span> <br />
+            <span>이번달<strong>"서울"</strong>미세먼지 농도를 기반으로 예상되는<span className='br'></span> 비염,천식,아토피 환자 수를 확인하세요.</span> <br />
             <small>과거 데이터를 분석하여 지역별·연령대별 건강 영향을 예측합니다.</small>
           </p>
           <div className="main-health-count-box">
