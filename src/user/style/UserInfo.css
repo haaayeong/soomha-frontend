@@ -1,0 +1,134 @@
+.user-info-page {
+  max-width: 600px;
+  margin: 20px auto 0 auto;
+  padding: 40px 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  min-height: 78vh;
+}
+
+/* 프로필 이미지 스타일 */
+.user-info-page .profile-image {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-info-page .userinfo-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ccc;
+}
+
+/* 닉네임 스타일 */
+.user-info-page .nickname {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
+}
+
+/* 사용자 정보 항목 */
+.user-info-page p {
+  font-size: 20px;
+  color: #555;
+  margin: 8px 0;
+}
+
+.user-info-page strong {
+  color: #333;
+}
+
+/* 어린이 레벨 & 도장 개수 스타일 */
+.user-info p {
+  font-size: 20px;
+  color: #333;
+}
+
+.user-info p strong {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* 버튼들 스타일링 */
+.user-info-page .buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.user-info-page button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  width: 200px;
+}
+
+.user-info-page button:hover {
+  background-color: #45a049;
+}
+
+.user-info-page .edit-btn {
+  background-color: #45a049;
+}
+
+.user-info-page .edit-btn:hover {
+  background-color: #45a049;
+}
+
+.user-info-page .delete-btn {
+  background-color: #f44336;
+}
+
+.user-info-page .delete-btn:hover {
+  background-color: #e53935;
+}
+
+.user-info-page .userinfo-change {
+  padding:5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 18;
+}
+
+.user-info-page .user-info input:focus {
+  outline: none;
+  border: 2px solid #a1a1a1
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .user-info-page {
+    padding: 20px;
+  }
+
+  .userinfo-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .user-info-page .nickname {
+    font-size: 20px;
+  }
+
+  .user-info-page .buttons {
+    flex-direction: column;
+  }
+
+  .user-info-page button {
+    margin: 10px 0;
+    width: 100%;
+  }
+}

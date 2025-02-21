@@ -77,7 +77,7 @@ function MainHealth({ pageHandler }) {
             </div>
           </div>
           <div className='main-health-warning'>
-          오늘은 내 아이의 <span>"{healthData.rhinitis ? '비염' : healthData.asthma ? '천식' : healthData.atopy ? '아토피' : '예상 중'}"</span> 주의해 주세요.
+          이번달은 내 아이의 <span>"{healthData.rhinitis ? '비염' : healthData.asthma ? '천식' : healthData.atopy ? '아토피' : '예상 중'}"</span> 주의해 주세요.
           </div>
         </div>
       </article>
